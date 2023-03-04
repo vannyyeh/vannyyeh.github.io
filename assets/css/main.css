@@ -1,5 +1,8 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url('https://fonts.googleapis.com/css?family=Inknut+Antiqua:400,500,600,700&display=swap');
+
+
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -74,7 +77,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #f2eff1; }
+  background: white; }
   body.is-preload *, body.is-preload *:before, body.is-preload *:after, body.is-resizing *, body.is-resizing *:before, body.is-resizing *:after {
     -moz-animation: none !important;
     -webkit-animation: none !important;
@@ -108,11 +111,11 @@ a {
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   border-bottom: dotted 1px;
-  color: #f56a6a;
+  color: #5BC0F8;
   text-decoration: none; }
   a:hover {
-    border-bottom-color: #f56a6a;
-    color: #f56a6a !important; }
+    border-bottom-color: #FFC93C;
+    color: #FFC93C !important; }
     a:hover strong {
       color: inherit; }
 
@@ -1203,7 +1206,10 @@ input[type="radio"] + label:before {
     line-height: inherit; }
   .icon.solid:before {
     font-weight: 900; }
-  .icon.brands:before {
+  .icon.thin:before {
+    font-weight: 600;
+}
+  .icon.regular:before {
     font-family: 'Font Awesome 5 Brands'; }
 
 /* Image */
@@ -1491,17 +1497,17 @@ button,
   background-color: transparent;
   border-radius: 0.375em;
   border: 0;
-  box-shadow: inset 0 0 0 2px #f56a6a;
-  color: #f56a6a !important;
+  box-shadow: inset 0 0 0 2px #5BC0F8;
+  color: #5BC0F8 !important;
   cursor: pointer;
   display: inline-block;
   font-family: "Roboto Slab", serif;
-  font-size: 0.8em;
+  font-size: 15px;
   font-weight: 700;
   height: 3.5em;
-  letter-spacing: 0.075em;
+  letter-spacing: 0.15em;
   line-height: 3.5em;
-  padding: 0 2.25em;
+  padding: 0 1.5em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -1511,7 +1517,7 @@ button,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-    background-color: rgba(245, 106, 106, 0.05); }
+    background-color: #f2fcff; }
   input[type="submit"]:active,
   input[type="reset"]:active,
   input[type="button"]:active,
@@ -1620,8 +1626,8 @@ button,
       margin-right: 1.5em; }
     .features article:nth-child(2n) {
       margin-left: 1.5em; }
-    .features article:nth-last-child(1), .features article:nth-last-child(2) {
-      margin-bottom: 0; }
+    /** .features article:nth-last-child(1), .features article:nth-last-child(2) {
+      margin-bottom: 0; } **/
     .features article .icon {
       -moz-flex-grow: 0;
       -webkit-flex-grow: 0;
@@ -1638,17 +1644,13 @@ button,
       text-align: center;
       width: 10em; }
       .features article .icon:before {
-        color: #f56a6a;
+        color: #0081C9;
         font-size: 2.75rem;
         position: relative;
         top: 0.05em; }
       .features article .icon:after {
-        -moz-transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-        border-radius: 0.25rem;
-        border: solid 2px rgba(210, 215, 217, 0.75);
+        border-radius: 50%;
+        border: solid 2px #5BC0F8;
         content: '';
         display: block;
         height: 7em;
@@ -1656,7 +1658,8 @@ button,
         margin: -3.5em 0 0 -3.5em;
         position: absolute;
         top: 50%;
-        width: 7em; }
+        width: 7em;
+        }
     .features article .content {
       -moz-flex-grow: 1;
       -webkit-flex-grow: 1;
@@ -2277,4 +2280,25 @@ button,
 
 .title-underline{
     border-bottom: 3px solid #FFC93C;
+}
+
+h3.about{
+    color: #332e54;
+    font-family: "Inknut Antiqua", serif;
+    line-height: 1.8 !important;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+a.navigation{
+    color: #332e54;
+    font-family: "Poppins Medium", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+    border-bottom: none !important;
+
 }
