@@ -110,7 +110,7 @@ a {
   -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  border-bottom: dotted 1px;
+  /* border-bottom: dotted 1px; */
   color: #5BC0F8;
   text-decoration: none; }
   a:hover {
@@ -1929,7 +1929,7 @@ button,
   transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   background-color: #f5f6f7;
   font-size: 0.9em;
-  position: relative;
+  position: sticky;
   width: 26em; }
   #sidebar h2 {
     font-size: 1.38889em; }
@@ -2075,8 +2075,12 @@ button,
   display: -ms-flex;
   display: flex;
   border-bottom: solid 5px #5BC0F8;
-  padding: 6em 0 1em 0;
-  position: relative; }
+  padding: 4em 0 1em 0;
+  position: sticky; 
+  z-index: 1000;
+  top: 0;
+  transition: 0.3s;
+  }
   #header > * {
     -moz-flex: 1;
     -webkit-flex: 1;
@@ -2092,7 +2096,7 @@ button,
     text-align: right; }
   @media screen and (max-width: 1680px) {
     #header {
-      padding-top: 5em; } }
+      padding-top: 2.5em; } }
   @media screen and (max-width: 736px) {
     #header {
       padding-top: 6.5em; }
@@ -2105,6 +2109,9 @@ button,
         position: absolute;
         right: -0.5em;
         top: 0; } }
+  #header.scrolled {
+    background-color: #ffffff; 
+    }
 
 /* Banner */
 #banner {

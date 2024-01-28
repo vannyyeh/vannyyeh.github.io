@@ -14,10 +14,23 @@ body {
   .full-screen-image {
     position: relative;
     height: 100vh;
-    background-image: url('https://source.unsplash.com/random');
+    background-image: url("../../images/rof/bg.png");
     background-size: cover;
     background-position: center;
   }
   .full-screen-image:hover .overlay {
     opacity: 1;
   }
+
+  .ring-title{
+    font-weight: 300 !important;
+    font-size: 40px !important;
+    line-height: 3rem !important;
+  }
+
+  .slide-in-img {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
