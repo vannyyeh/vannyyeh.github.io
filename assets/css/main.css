@@ -2298,6 +2298,24 @@ h3.about{
     margin-bottom: 0px;
 }
 
+h2.final-text{
+  font-family: Lora;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 104px */
+}
+
+@media screen and (max-width: 1280px){
+  h2.final-text{
+    font-family: Lora;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 104px */
+  }
+}
+
 a.navigation{
     color: #332e54;
     font-family: "Poppins Medium", sans-serif;
