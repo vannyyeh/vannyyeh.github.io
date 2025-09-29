@@ -1,130 +1,226 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanny Yeh - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="Vanny Yeh Logo" class="logo-img">
+                </div>
+                <nav class="nav">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="assets/VannyYeh-Resume.pdf" class="nav-link" target="_blank">Resume</a>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/vannyyeh/" target="_blank" class="social-link">
+                            <img src="assets/linkedin.svg" alt="LinkedIn" width="25" height="25">
+                        </a>
+                        <a href="mailto:vannyyeh@gamil.com" class="social-link" target="_blank">
+                            <img src="assets/email.svg" alt="Email" width="25" height="25">
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-divider"></div>
+        </header>
 
-<html>
-	<head>
-		<title>Vanny Yeh</title>
-		<meta charset="utf-8" />
-		<meta name="description" content="Vanny Yeh Portfolio">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="https://kit.fontawesome.com/1fd12d484f.css" crossorigin="anonymous">
-		<script src="assets/js/projects.js"></script>
+        <!-- Main Background Section -->
+        <div class="main-background">
+            <div class="background-image"></div>
+            
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Hi, I'm Vanny!</h1>
+                    <p class="hero-subtitle">
+                        I design and develop intuitive solutions that elevate 
+                        <span class="gradient-text">everyday experiences.</span>
+                    </p>
+                    <div class="hero-image">
+                        <img src="assets/profile-image.png" alt="Vanny animated" class="profile-image">
+                    </div>
+                </div>
+            </section>
 
-	</head>
-	<body class="is-preload">
+            <!-- Skills Section -->
+            <section class="skills-section">
+                <div class="skills-container">
+                    <div class="philosophy-card">
+                        <h3 class="philosophy-title">Career Philosophy</h3>
+                        <div class="philosophy-grid">
+                            <div class="philosophy-item">
+                                <div class="philosophy-header">
+                                    <img src="assets/philosophy-discover.svg" alt="Discover the Why" class="philosophy-icon">
+                                    <h4>Discover the Why</h4>
+                                </div>
+                                <p>Before any design begins, I dig into research to uncover the motivations, challenges, and goals behind user behaviors.</p>
+                            </div>
+                            <div class="philosophy-item">
+                                <div class="philosophy-header">
+                                    <img src="assets/philosophy-design.svg" alt="Design with Purpose" class="philosophy-icon">
+                                    <h4>Design with Purpose</h4>
+                                </div>
+                                <p>With insights in hand, I craft experiences that are not just beautiful, but usable and accessible—made to serve every user.</p>
+                            </div>
+                            <div class="philosophy-item">
+                                <div class="philosophy-header">
+                                    <img src="assets/philosophy-build.svg" alt="Build for Impact" class="philosophy-icon">
+                                    <h4>Build for Impact</h4>
+                                </div>
+                                <p>I develop with intention, creating efficient interfaces that boost productivity and help the product thrive.</p>
+                            </div>
+                        </div>
+                    </div>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+                    <div class="skills-card">
+                        <h3 class="skills-title">Top Skills</h3>
+                        <div class="skills-grid">
+                            <!-- Row 1: 4 skills -->
+                            <div class="skill-row">
+                                <div class="skill-tag">
+                                    <img src="assets/skill-frontend.svg" alt="Front-end Language" class="skill-icon">
+                                    <span>Vibe Coding</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-cms.svg" alt="CMS Development" class="skill-icon">
+                                    <span>CMS Development</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-user research.svg" alt="User Research" class="skill-icon">
+                                    <span>User Research</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-version-control.svg" alt="Version Control" class="skill-icon">
+                                    <span>Version Control</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Row 2: 3 skills -->
+                            <div class="skill-row">
+                                <div class="skill-tag">
+                                    <img src="assets/skill-accessibility.svg" alt="Web Accessibility" class="skill-icon">
+                                    <span>Web Accessibility</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-architecture.svg" alt="Information Architecture" class="skill-icon">
+                                    <span>Information Architecture</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-product-thinking.svg" alt="Product Thinking" class="skill-icon">
+                                    <span>Product Thinking</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Row 3: 3 skills -->
+                            <div class="skill-row">
+                                <div class="skill-tag">
+                                    <img src="assets/skill-stakeholder.svg" alt="Stakeholder Management" class="skill-icon">
+                                    <span>Stakeholder Management</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-storytelling.svg" alt="Visual Storytelling" class="skill-icon">
+                                    <span>Visual Storytelling</span>
+                                </div>
+                                <div class="skill-tag">
+                                    <img src="assets/skill-marketing.svg" alt="Marketing/ Advertising" class="skill-icon">
+                                    <span>Marketing/ Advertising</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-							<!-- Header -->
-								<header id="header">
-									<a href="#" id="top-link" style="color: #7f888f;">Vanny Yeh</a>
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="mouse-cursor">
+                    <svg width="48" height="80" viewBox="0 0 24 40" fill="none">
+                        <rect x="8" y="4" width="8" height="16" rx="4" stroke="#121212" stroke-width="1" fill="none"/>
+                        <circle cx="12" cy="8" r="2" fill="#121212"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
 
-									<ul class="icons">
-										<li><a class="navigation" href="./about.html" ><span class="label">ABOUT</span></a></li>
-										<li><a class="navigation" href="./images/pdf/VY_Resume.pdf" target="_blank" ><span class="label">RESUME</span></a></li>
-										<li><a href="https://www.linkedin.com/in/vannyyeh/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-										<li><a href="mailto:vanny.yeh@utexas.edu" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h2 class="projects-title">Selected Projects</h2>
+            <p class="projects-subtitle">
+                Switch between tabs to explore some of my favorite product design stories
+                <br>— rooted in <strong>research</strong>, <strong>shaped by purpose</strong>, and brought to <strong>life through code</strong>.
+            </p>
+            
+            <div class="projects-container">
+                <div class="projects-list">
+                    <div class="project-item active">Simon Quick Advisors</div>
+                    <div class="project-item">Equipment Suppliers Application</div>
+                    <div class="project-item">ValeHealth Launch</div>
+                    <div class="project-item">Tellius</div>
+                </div>
 
+                <div class="project-cards">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="assets/project-simon-quick.png" alt="Simon Quick Advisors Project" class="project-image">
+                        </div>
+                        <div class="project-card-content">
+                            <h3 class="project-card-title simon-quick-title">A Smarter, Sleeker Financial Experience</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Web Design</span>
+                                <span class="project-tag">B2C</span>
+                            </div>
+                            <p class="project-description">Built around client needs, the design focuses on clarity, trust, and reliability— showing users that Simon Quick is a financial firm they can believe in.</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="assets/project-equipment.png" alt="Equipment Suppliers Project" class="project-image">
+                        </div>
+                        <div class="project-card-content">
+                            <h3 class="project-card-title equipment-title">A Streamlined Platform for Construction Equipment Suppliers</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">UX Design</span>
+                                <span class="project-tag">UX Research</span>
+                            </div>
+                            <p class="project-description">The supplier interface was reimagined to reduce complexity, improve usability, and create a seamless way to add, edit, and manage rental listings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-									</ul>
-								</header>
-
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-
-										<h2>I design and develop experiences that <br>
-											<span class="title-underline">simplify</span> people's lives.</h2>
-
-
-									</div>
-									<span class="image object">
-										<img src="./images/Vanny-animated-2.png" alt="" />
-									</span>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Core Values</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon solid fa-book-open-reader"></span>
-											<div class="content">
-												<h3 class="about">01. Research</h3>
-												<p>Gain a thorough understanding of the needs and build upon existing knowledge to determine effective methods for addressing specific factors and requirements.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-compass-drafting"></span>
-											<div class="content">
-												<h3 class="about">02. Design</h3>
-												<p>Apply research insights to create a prototype, utilizing a cross-functional process that includes UI/UX design and coding implementation.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-laptop-code"></span>
-											<div class="content">
-												<h3 class="about">03. Develop</h3>
-												<p>Utilize the findings from the research and design phases to create a concrete platform. The coder converts the prototype into a fully functional product.</p>
-											</div>
-										</article>
-									</div>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Projects</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-											<h3>Ring of The Steel</h3>
-											<p>Co-developing a public art installation related to the historical troubles in Northern Ireland.
-												Developed an app that can joint the <b>archival, oral history and illustration content </b>in a cohesive way that offers a rich user experience.</p>
-											<ul class="actions">
-												<li><a href="./ringOfTheSteel.html" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-											<h3>Critter Game</h3>
-											<p>Designed object-oriented codes by Java and JavaFX for a simulation model game with grid points populated by a variety of critters with rules and implement GUI</p>
-											<ul class="actions">
-												<li><a href="./critterGame.html" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-											<h3>Engine Trading Platform</h3>
-											<p>The aviation industry has already taken significant strides in using technology to enhance the passenger experience. The technical and MRO world of aviation insists on desperately clinging on to paper documents for managing technical records and leasing engine and aircraft.</p>
-											<ul class="actions">
-												<li><a href="./tradingPlatform.html" class="button">More</a></li>
-											</ul>
-										</article>
-
-									</div>
-								</section>
-
-						</div>
-					</div>
-
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="https://kit.fontawesome.com/1fd12d484f.js" crossorigin="anonymous"></script>
-
-	</body>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-nav">
+                    <a href="#about" class="footer-link">About</a>
+                    <a href="#projects" class="footer-link">Projects</a>
+                    <a href="#resume" class="footer-link">Resume</a>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/vannyyeh/" target="_blank" class="social-link">
+                            <img src="assets/linkedin.svg" alt="LinkedIn" width="25" height="25">
+                        </a>
+                        <a href="mailto:vannyyeh@gamil.com" class="social-link" target="_blank">
+                            <img src="assets/email.svg" alt="Email" width="25" height="25">
+                        </a>
+                    </div>
+                    <p class="footer-copyright">© 2025 Vanny Yeh</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>

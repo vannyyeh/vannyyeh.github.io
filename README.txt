@@ -1,2 +1,3 @@
-Inspired by the open resource and build up from it.
-Perosnal Web
+Inspired by the open resource and vibe coding.
+
+The assets folder includes the latest resume. 
