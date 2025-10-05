@@ -10,6 +10,7 @@ body {
     background-color: #121212;
     color: #ffffff;
     line-height: 1.6;
+    padding-top: 80px; /* Account for fixed header */
 }
 
 .container {
@@ -20,8 +21,23 @@ body {
 
 /* Header Styles */
 .header {
-    position: relative;
-    padding: 40px 40px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(18, 18, 18, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-content {
@@ -32,8 +48,8 @@ body {
 }
 
 .logo-img {
-    width: 52px;
-    height: 37px;
+    width: 40px;
+    height: auto;
     object-fit: cover;
 }
 
@@ -76,22 +92,13 @@ body {
     opacity: 0.7;
 }
 
-.header-divider {
-    height: 2px;
-    background: #ffffff;
-    backdrop-filter: blur(5px);
-    margin: 0 auto;
-    max-width: 1100px;
-}
 
 /* Main Background Section */
 .main-background {
     position: relative;
     background-color: #121212;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .background-image {
@@ -100,12 +107,12 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
     background-image: url('assets/Hero-Background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 0;
-    margin: 0;
 }
 
 /* Hero Section */
@@ -220,7 +227,7 @@ body {
 
 /* Skills Section */
 .skills-section {
-    padding: 40px 40px;
+    padding: 40px 0;
     display: flex;
     gap: 20px;
     align-items: flex-start;
@@ -235,7 +242,9 @@ body {
 }
 
 .skills-card {
-    background: #D9D9D9;
+    background-color: #1a1a1a;
+    border: 2px solid #262626;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 22px 20px;
     flex: 1;
@@ -247,7 +256,7 @@ body {
     font-weight: 700;
     font-size: 25px;
     line-height: 30px;
-    color: #121212;
+    color: white;
     margin-bottom: 14px;
 }
 
@@ -305,7 +314,8 @@ body {
 }
 
 .philosophy-card {
-    background: #ffc93c;
+    background: #1a1a1a;
+    border: 2px solid #262626;
     border-radius: 10px;
     padding: 22px 20px;
     flex: 1;
@@ -317,7 +327,7 @@ body {
     font-weight: 700;
     font-size: 25px;
     line-height: 30px;
-    color: #121212;
+    color: white;
     margin-bottom: 14px;
 }
 
@@ -423,7 +433,7 @@ body {
 
 /* Projects Section */
 .projects-section {
-    padding: 80px 40px;
+    padding: 80px 0;
     background-color: #121212;
 }
 
@@ -564,7 +574,7 @@ body {
 
 /* Footer */
 .footer {
-    padding: 50px 40px 30px;
+    padding: 50px 0 30px;
 }
 
 .footer-content {
@@ -639,7 +649,11 @@ body {
     }
     
     .header {
-        padding: 30px 20px 0;
+        padding: 15px 0;
+    }
+    
+    body {
+        padding-top: 70px; /* Reduced padding for mobile */
     }
     
     .header-content {
@@ -666,26 +680,53 @@ body {
     }
     
     .skills-section {
-        padding: 60px 20px;
+        padding: 40px 0;
         flex-direction: column;
+        gap: 30px;
     }
     
     .skills-container {
         flex-direction: column;
+        gap: 30px;
+    }
+    
+    .skills-card,
+    .philosophy-card {
+        max-width: none;
+        width: 100%;
+    }
+    
+    .skill-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .skill-tag {
+        font-size: 14px;
+        padding: 4px 6px;
+        height: 28px;
+    }
+    
+    .skill-icon {
+        width: 18px;
+        height: 18px;
     }
     
     .philosophy-grid {
-        flex-direction: row;
-        overflow-x: auto;
+        flex-direction: column;
+        gap: 12px;
+        overflow-x: visible;
+        overflow-y: visible;
     }
     
     .philosophy-item {
-        flex: 0 0 250px;
-        min-width: 250px;
+        flex: none;
+        min-width: auto;
+        width: 100%;
     }
     
     .projects-section {
-        padding: 60px 20px;
+        padding: 60px 0;
     }
     
     .projects-title {
@@ -711,7 +752,7 @@ body {
     }
     
     .footer {
-        padding: 30px 20px;
+        padding: 30px 0;
     }
     
     .footer-nav {
@@ -732,6 +773,61 @@ body {
     
     .hero-subtitle {
         font-size: 16px;
+    }
+    
+    .skills-section {
+        padding: 30px 0;
+        gap: 20px;
+    }
+    
+    .skills-container {
+        gap: 20px;
+    }
+    
+    .skills-card,
+    .philosophy-card {
+        padding: 16px;
+    }
+    
+    .skills-title,
+    .philosophy-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .skill-tag {
+        font-size: 12px;
+        padding: 3px 5px;
+        height: 24px;
+        gap: 6px;
+    }
+    
+    .skill-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .philosophy-item {
+        padding: 12px 8px;
+    }
+    
+    .philosophy-header {
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .philosophy-header h4 {
+        font-size: 14px;
+    }
+    
+    .philosophy-icon {
+        width: 28px;
+        height: 24px;
+    }
+    
+    .philosophy-item p {
+        font-size: 11px;
+        height: 40px;
     }
     
     .projects-title {
