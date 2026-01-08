@@ -95,4 +95,120 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    // Dynamic hero intro text rotation with slide effect and typing animation
+    const heroIntroText = document.querySelector('.hero-intro-text');
+    if (heroIntroText) {
+        const messages = [
+            "designer, shaping ideas into user centered digital experiences.",
+            "developer, turning design intent into scalable systems.",
+            "designer, imagining how products should feel and function.",
+            "developer, building the structure that makes them work."
+        ];
+        
+        let currentIndex = 0;
+        let typingInterval = null;
+        
+        function typeMessage(message, callback) {
+            let index = 0;
+            heroIntroText.innerHTML = '';
+            
+            // Find positions of "designer" and "developer" in the message
+            const highlightWords = ['designer', 'developer'];
+            const highlightRanges = [];
+            
+            highlightWords.forEach(word => {
+                const regex = new RegExp(word, 'gi');
+                let match;
+                while ((match = regex.exec(message)) !== null) {
+                    highlightRanges.push({
+                        start: match.index,
+                        end: match.index + word.length,
+                        word: match[0]
+                    });
+                }
+            });
+            
+            // Sort ranges by start position
+            highlightRanges.sort((a, b) => a.start - b.start);
+            
+            function type() {
+                if (index < message.length) {
+                    let resultHTML = '';
+                    let currentPos = 0;
+                    
+                    // Build HTML with highlights
+                    for (let range of highlightRanges) {
+                        // Add text before highlight (typed character by character)
+                        if (currentPos < range.start) {
+                            const endPos = Math.min(range.start, index);
+                            if (endPos > currentPos) {
+                                resultHTML += message.substring(currentPos, endPos);
+                            }
+                            currentPos = endPos;
+                        }
+                        
+                        // Handle highlighted word (fade in as complete word, not character by character)
+                        if (index >= range.end) {
+                            // Word is complete, add it with fade-in class
+                            resultHTML += '<span class="highlight-word fade-in">' + range.word + '</span>';
+                            currentPos = range.end;
+                        } else if (index > range.start && index < range.end) {
+                            // We're in the middle of the word - skip it in display but continue typing
+                            // The word will appear when index reaches range.end
+                            currentPos = range.start;
+                        }
+                    }
+                    
+                    // Add remaining text after highlights (typed character by character)
+                    // Only add if we're past all highlight ranges or between them
+                    let skipHighlight = false;
+                    for (let range of highlightRanges) {
+                        if (index > range.start && index < range.end) {
+                            skipHighlight = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!skipHighlight && currentPos < index) {
+                        resultHTML += message.substring(currentPos, index);
+                    }
+                    
+                    heroIntroText.innerHTML = resultHTML;
+                    index++;
+                    typingInterval = setTimeout(type, 30); // Typing speed: 30ms per character
+                } else {
+                    // Final message with all highlights faded in
+                    let finalHTML = message;
+                    highlightWords.forEach(word => {
+                        const regex = new RegExp(`(${word})`, 'gi');
+                        finalHTML = finalHTML.replace(regex, '<span class="highlight-word fade-in">$1</span>');
+                    });
+                    heroIntroText.innerHTML = finalHTML;
+                    if (callback) callback();
+                }
+            }
+            
+            type();
+        }
+        
+        function rotateMessage() {
+            // Clear any existing typing interval
+            if (typingInterval) {
+                clearTimeout(typingInterval);
+                typingInterval = null;
+            }
+            
+            // Get next message
+            currentIndex = (currentIndex + 1) % messages.length;
+            let message = messages[currentIndex];
+            
+            // Clear content and start typing effect
+            heroIntroText.innerHTML = '';
+            typeMessage(message);
+        }
+        
+        // Start rotation after initial load
+        setInterval(rotateMessage, 2500);
+    }
 });
