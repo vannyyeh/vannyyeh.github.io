@@ -154,7 +154,7 @@ body {
 }
 
 .hero-content {
-    max-width: 1092px;
+    max-width: 1150px;
 }
 
 .hero-intro {
@@ -165,33 +165,55 @@ body {
     color: rgba(10, 10, 10, 0.9);
     margin-bottom: 10px;
     letter-spacing: -0.4344px;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
 }
 
 .hero-intro-static {
     display: inline-block;
+    margin-right: 8px;
 }
 
-.hero-intro-text {
+.hero-intro-role {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2px 6px;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    text-align: center;
+}
+
+.hero-intro-role-wrapper {
     display: inline-block;
     position: relative;
 }
 
-.hero-intro-text .highlight-word {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
-    padding: 2px 6px;
-    border-radius: 3px;
+.hero-intro-role-text {
     display: inline-block;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
+    white-space: nowrap;
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(0);
+    color: #ffffff;
 }
 
-.hero-intro-text .highlight-word.fade-in {
-    opacity: 1;
+.hero-intro-role-text.slide-down {
+    transform: translateY(100%);
+}
+
+.hero-intro-role-text.slide-up {
+    transform: translateY(-100%);
+}
+
+.hero-intro-rest {
+    display: inline-block;
+    flex: 1;
+    min-width: 0;
+}
+
+.hero-intro-rest {
+    display: inline-block;
+    flex: 1;
+    min-width: 0;
 }
 
 .hero-description {
@@ -358,11 +380,22 @@ body {
     row-gap: 60px;
 }
 
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .project-card {
     display: flex;
     flex-direction: column;
     gap: 22.239px;
     max-width: 560px;
+    transition: opacity 0.3s ease;
+}
+
+.project-card-link:hover .project-card {
+    opacity: 0.8;
 }
 
 .project-image {

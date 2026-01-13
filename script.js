@@ -96,95 +96,43 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Dynamic hero intro text rotation with slide effect and typing animation
-    const heroIntroText = document.querySelector('.hero-intro-text');
-    if (heroIntroText) {
+    // Hero intro text rotation with sliding text effect (like lunawangzhiyue.com)
+    const heroIntroRole = document.querySelector('.hero-intro-role');
+    const heroIntroRest = document.querySelector('.hero-intro-rest');
+    
+    if (heroIntroRole && heroIntroRest) {
         const messages = [
-            "designer, shaping ideas into user centered digital experiences.",
-            "developer, turning design intent into scalable systems.",
-            "designer, imagining how products should feel and function.",
-            "developer, building the structure that makes them work."
+            {
+                role: "designer",
+                rest: ", shaping ideas into user centered experiences."
+            },
+            {
+                role: "developer",
+                rest: ", turning design intent into scalable systems."
+            },
+            {
+                role: "designer",
+                rest: ", imagining how products should feel and function."
+            },
+            {
+                role: "developer",
+                rest: ", building the structure that makes them work."
+            }
         ];
         
         let currentIndex = 0;
         let typingInterval = null;
         
-        function typeMessage(message, callback) {
+        function typeText(text, element, callback) {
             let index = 0;
-            heroIntroText.innerHTML = '';
-            
-            // Find positions of "designer" and "developer" in the message
-            const highlightWords = ['designer', 'developer'];
-            const highlightRanges = [];
-            
-            highlightWords.forEach(word => {
-                const regex = new RegExp(word, 'gi');
-                let match;
-                while ((match = regex.exec(message)) !== null) {
-                    highlightRanges.push({
-                        start: match.index,
-                        end: match.index + word.length,
-                        word: match[0]
-                    });
-                }
-            });
-            
-            // Sort ranges by start position
-            highlightRanges.sort((a, b) => a.start - b.start);
+            element.textContent = '';
             
             function type() {
-                if (index < message.length) {
-                    let resultHTML = '';
-                    let currentPos = 0;
-                    
-                    // Build HTML with highlights
-                    for (let range of highlightRanges) {
-                        // Add text before highlight (typed character by character)
-                        if (currentPos < range.start) {
-                            const endPos = Math.min(range.start, index);
-                            if (endPos > currentPos) {
-                                resultHTML += message.substring(currentPos, endPos);
-                            }
-                            currentPos = endPos;
-                        }
-                        
-                        // Handle highlighted word (fade in as complete word, not character by character)
-                        if (index >= range.end) {
-                            // Word is complete, add it with fade-in class
-                            resultHTML += '<span class="highlight-word fade-in">' + range.word + '</span>';
-                            currentPos = range.end;
-                        } else if (index > range.start && index < range.end) {
-                            // We're in the middle of the word - skip it in display but continue typing
-                            // The word will appear when index reaches range.end
-                            currentPos = range.start;
-                        }
-                    }
-                    
-                    // Add remaining text after highlights (typed character by character)
-                    // Only add if we're past all highlight ranges or between them
-                    let skipHighlight = false;
-                    for (let range of highlightRanges) {
-                        if (index > range.start && index < range.end) {
-                            skipHighlight = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!skipHighlight && currentPos < index) {
-                        resultHTML += message.substring(currentPos, index);
-                    }
-                    
-                    heroIntroText.innerHTML = resultHTML;
+                if (index < text.length) {
+                    element.textContent += text[index];
                     index++;
                     typingInterval = setTimeout(type, 30); // Typing speed: 30ms per character
                 } else {
-                    // Final message with all highlights faded in
-                    let finalHTML = message;
-                    highlightWords.forEach(word => {
-                        const regex = new RegExp(`(${word})`, 'gi');
-                        finalHTML = finalHTML.replace(regex, '<span class="highlight-word fade-in">$1</span>');
-                    });
-                    heroIntroText.innerHTML = finalHTML;
                     if (callback) callback();
                 }
             }
@@ -201,14 +149,63 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get next message
             currentIndex = (currentIndex + 1) % messages.length;
-            let message = messages[currentIndex];
+            const message = messages[currentIndex];
             
-            // Clear content and start typing effect
-            heroIntroText.innerHTML = '';
-            typeMessage(message);
+            // Get current role text element
+            const currentRoleText = heroIntroRole.querySelector('.hero-intro-role-text');
+            
+            if (currentRoleText) {
+                // Slide current text down
+                currentRoleText.classList.add('slide-down');
+                
+                setTimeout(() => {
+                    // Create new text element sliding from top
+                    const newRoleText = document.createElement('span');
+                    newRoleText.className = 'hero-intro-role-text slide-up';
+                    newRoleText.textContent = message.role;
+                    heroIntroRole.innerHTML = '';
+                    heroIntroRole.appendChild(newRoleText);
+                    
+                    // Force reflow
+                    void heroIntroRole.offsetWidth;
+                    
+                    // Slide new text to position
+                    setTimeout(() => {
+                        newRoleText.classList.remove('slide-up');
+                    }, 10);
+                    
+                    // Clear and start typing the rest
+                    heroIntroRest.textContent = '';
+                    typeText(message.rest, heroIntroRest);
+                }, 500); // Wait for slide-up to complete
+            } else {
+                // First time - just set the text
+                const roleText = document.createElement('span');
+                roleText.className = 'hero-intro-role-text';
+                roleText.textContent = message.role;
+                heroIntroRole.innerHTML = '';
+                heroIntroRole.appendChild(roleText);
+                
+                // Clear and start typing the rest
+                heroIntroRest.textContent = '';
+                typeText(message.rest, heroIntroRest);
+            }
+        }
+        
+        // Initialize first message
+        if (heroIntroRole && !heroIntroRole.querySelector('.hero-intro-role-text')) {
+            const roleText = document.createElement('span');
+            roleText.className = 'hero-intro-role-text';
+            roleText.textContent = messages[0].role;
+            heroIntroRole.innerHTML = '';
+            heroIntroRole.appendChild(roleText);
+            
+            // Start typing the first rest text
+            heroIntroRest.textContent = '';
+            typeText(messages[0].rest, heroIntroRest);
         }
         
         // Start rotation after initial load
-        setInterval(rotateMessage, 2500);
+        setInterval(rotateMessage, 3500);
     }
 });
