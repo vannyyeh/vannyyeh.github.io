@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValeHealth National Health Marketplace - Vanny Yeh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/Vy.svg" alt="VY Logo" class="logo-img">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html#work" class="nav-link">Work</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="assets/VannyYeh-Resume.pdf" class="nav-link" target="_blank">
+                        Resume
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-arrow">
+                            <path d="M6.5 4L11.5 8.5L6.5 13" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content project-case-study">
+        <!-- Hero Banner - Full Width -->
+        <section class="project-hero">
+            <div class="project-hero-banner">
+                <div class="project-hero-image">
+                    <img src="assets/ValeHealth-Asset/ValeHealth Hero.jpg" alt="ValeHealth AI Sleep Support Chatbot" class="project-hero-img">
+                </div>
+                <div class="project-hero-overlay">
+                    <h1 class="project-hero-title">Valehealth AI Sleep Support Chatbot</h1>
+                    <p class="project-hero-subtitle">UX Case Study — Health Marketplace AI Chatbot</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Overview -->
+            <section class="project-section project-overview-section">
+                <div class="project-overview-header">
+                    <h2 class="project-overview-heading">Overview</h2>
+                    <span class="project-overview-number">01</span>
+                </div>
+                <h3 class="project-section-subtitle">Designing an AI-Assisted Sleep Support Chatbot for Valehealth</h3>
+                <div class="project-overview-grid">
+                    <div class="project-overview-content">
+                        <p class="project-overview-text">
+                            A conversational experience that guides users through sleep concerns while offering clinically informed product recommendations</p>
+                        <ul class="project-key-details">
+                            <li><span class="key-detail-label">Role</span> <span class="key-detail-value">UX/UI Designer (AI Experience Design)</span></li>
+                            <li><span class="key-detail-label">Deliverables</span> <span class="key-detail-value">Research, Wireframes, High-Fidelity Prototype, Conversation Flows</span></li>
+                            <li><span class="key-detail-label">Timeline</span> <span class="key-detail-value">8 weeks</span></li>
+                            <li><span class="key-detail-label">Tools</span> <span class="key-detail-value">Figma, Miro, UX Research</span></li>
+                            <li><span class="key-detail-label">Partners</span> <span class="key-detail-value">Engineering, Medical Partners (Froedtert and MCW health network)</span></li>
+                        </ul>
+                    </div>
+                    <div class="project-overview-image">
+                        <img src="assets/Valehealth.jpg" alt="Chatbot interface on mobile" class="project-placeholder-img">
+                    </div>
+                </div>
+                <div class="project-highlight-bar">
+                    <span>BETTER SLEEP UNDERSTANDING = MORE TRUST = MORE RELEVANT PRODUCT DISCOVERY = <strong class="highlight-bar-emphasis">Higher Conversion</strong></span>
+                </div>
+            </section>
+
+            <!-- Problem / Background -->
+            <section class="project-section">
+                <h2 class="project-section-title">Problem / Background</h2>
+                <div class="project-cards-grid project-cards-four">
+                    <div class="project-card-block">
+                        <h4 class="project-card-block-title">Context</h4>
+                        <p class="project-card-block-text">Valehealth’s marketplace needed a way to guide users through a large catalog of health and sleep products while maintaining credibility and reducing decision fatigue.</p>
+                    </div>
+                    <div class="project-card-block">
+                        <h4 class="project-card-block-title">Core Problem</h4>
+                        <p class="project-card-block-text">Users struggled to find relevant products and lacked confidence in their choices. Generic search and filters did not address sleep-specific needs or build trust.</p>
+                    </div>
+                    <div class="project-card-block">
+                        <h4 class="project-card-block-title">Users & Intentional Frustration</h4>
+                        <p class="project-card-block-text">Many users reported feeling overwhelmed by options and unsure which products aligned with their sleep goals, leading to drop-off and lower conversion.</p>
+                    </div>
+                    <div class="project-card-block">
+                        <h4 class="project-card-block-title">Hypothesis</h4>
+                        <p class="project-card-block-text">An AI-guided conversational experience could improve understanding of sleep needs, increase trust, and surface more relevant product recommendations</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Goals / Success Criteria -->
+            <section class="project-section">
+                <h2 class="project-section-title">Goals / Success Criteria</h2>
+                <div class="project-goals-grid">
+                    <div class="project-goals-list">
+                        <h4 class="project-list-heading">Problem/Context</h4>
+                        <ul class="project-bullet-list">
+                            <li>Improve discovery of sleep-related products through guided conversation</li>
+                            <li>Build trust via transparent, health-informed recommendations</li>
+                            <li>Reduce friction in onboarding and first-time use</li>
+                            <li>Align product experience with user sleep goals and preferences</li>
+                        </ul>
+                    </div>
+                    <div class="project-kpi-cards">
+                        <h4 class="project-list-heading">Commitment KPIs</h4>
+                        <div class="kpi-cards-row">
+                            <div class="kpi-card">
+                                <span class="kpi-icon">📊</span>
+                                <span class="kpi-text">Account Engagement</span>
+                            </div>
+                            <div class="kpi-card">
+                                <span class="kpi-icon">✓</span>
+                                <span class="kpi-text">Subscription Completion</span>
+                            </div>
+                            <div class="kpi-card">
+                                <span class="kpi-icon">↑</span>
+                                <span class="kpi-text">App Onboarding rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research & Analysis -->
+            <section class="project-section">
+                <h2 class="project-section-title">Research & Analysis</h2>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">User Interviews & Qualitative Research</h4>
+                    <p class="project-block-text">Conducted interviews with users who had used health and sleep product marketplaces. Key themes included confusion around product claims, desire for personalized suggestions, and need for simple onboarding.</p>
+                    <div class="project-highlight-box">
+                        <p>"Users wanted to feel understood before being shown products—conversation first, then discovery."</p>
+                    </div>
+                </div>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">Competitive Analysis & Market Research</h4>
+                    <p class="project-block-text">Analyzed competitors’ chatbot and discovery flows. Identified gaps in sleep-specific guidance and opportunities to differentiate through trust and relevance.</p>
+                </div>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">Problem/User Story Mapping</h4>
+                    <p class="project-block-text">Mapped user stories to pain points and opportunities.</p>
+                    <ul class="project-bullet-list">
+                        <li><strong>What I noticed:</strong> Users often abandoned flows when asked too many questions upfront.</li>
+                        <li><strong>What I learned:</strong> Progressive disclosure and optional depth worked better than long forms.</li>
+                    </ul>
+                </div>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">User Flow / Task Flows</h4>
+                    <p class="project-block-text">Defined flows for conversation entry, sleep goal capture, and product discovery.</p>
+                    <ul class="project-bullet-list">
+                        <li><strong>Goals to accomplish:</strong> Minimal steps to first value; clear path from chat to product detail and checkout.</li>
+                    </ul>
+                </div>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">Information Architecture / Sitemap</h4>
+                    <p class="project-block-text">Structured content and features for the chatbot and linked product experience.</p>
+                    <ul class="project-bullet-list">
+                        <li><strong>What's included:</strong> Chat home, sleep assessment, recommendations, collections, and account settings.</li>
+                    </ul>
+                </div>
+                <div class="project-research-block">
+                    <h4 class="project-block-title">Key Learnings from Research</h4>
+                    <p class="project-block-text">Trust and relevance were the main drivers. Users responded well to conversational interfaces when they felt the system understood their context.</p>
+                    <div class="project-highlight-box">
+                        <p>Key finding: Combining AI conversation with curated product collections led to higher engagement and completion rates in testing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decision Making & Design Principles -->
+            <section class="project-section">
+                <h2 class="project-section-title">Decision Making & Design Principles</h2>
+                <div class="project-principles-list">
+                    <div class="project-principle-item">
+                        <span class="principle-icon principle-icon-radio">○</span>
+                        <p class="project-block-text"><strong>User-centered & Data-driven Decisions:</strong> All design choices were informed by user research and usability testing, with metrics used to validate direction.</p>
+                    </div>
+                    <div class="project-principle-item project-highlight-box">
+                        <span class="principle-icon principle-icon-check">✓</span>
+                        <p class="project-block-text"><strong>Goal-oriented, progressive roles:</strong> The chatbot was designed to adapt to user intent—supporting both quick answers and deeper exploration without overwhelming.</p>
+                    </div>
+                    <div class="project-principle-item">
+                        <span class="principle-icon principle-icon-check">✓</span>
+                        <p class="project-block-text"><strong>Optimized for conversational AI (NLP) product/content:</strong> Copy and flows were structured for clarity and scannability within a chat context, with clear CTAs and fallbacks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why This Approach? -->
+            <section class="project-section">
+                <h2 class="project-section-title">Why This Approach?</h2>
+                <p class="project-block-text project-standalone-text">A conversational, AI-guided experience allowed Valehealth to meet users where they were—answering sleep-related questions first, then naturally surfacing products. This approach prioritized understanding and trust over immediate conversion, which in turn supported higher engagement and better long-term outcomes in our tests.</p>
+            </section>
+
+            <!-- Solution Bridge & Prototyping -->
+            <section class="project-section">
+                <h2 class="project-section-title">Solution Bridge & Prototyping</h2>
+                <h3 class="project-section-subtitle">Step 1: AI-Guided Conversation and Product Discovery</h3>
+                <p class="project-block-text">The chatbot opens with a friendly, low-commitment prompt that invites users to share their sleep goals or questions. From there, the flow branches into assessment, recommendations, or direct product discovery based on user input.</p>
+                <h3 class="project-section-subtitle">Step 2: AI-Chatbot Conversation & Fluid Navigating</h3>
+                <div class="project-image-block">
+                    <img src="assets/Valehealth.jpg" alt="Chatbot conversation and navigation flow" class="project-placeholder-img">
+                </div>
+                <p class="project-block-text">Users can move between chat and product views without losing context. Arrows and clear transitions guide them from conversation to collection and product detail, keeping the experience fluid and coherent.</p>
+            </section>
+
+            <!-- Deep Dive to Product Discovery -->
+            <section class="project-section">
+                <h2 class="project-section-title">Deep Dive to Product Discovery</h2>
+                <h3 class="project-section-subtitle">How we Re-envisioned the Recommendation & Collection Interactions</h3>
+                <div class="project-image-block project-image-large">
+                    <img src="assets/Valehealth.jpg" alt="Product discovery grid and flows" class="project-placeholder-img">
+                </div>
+                <p class="project-block-text"><strong>Collection Recommendation flow:</strong> After the chat assesses preferences, users see curated collections (e.g., mattresses, pillows, sleep aids) with short explanations tied to their stated goals.</p>
+                <p class="project-block-text"><strong>Facility / Specialist Management flow:</strong> For users who need more guidance, the flow connects them to relevant resources or specialists while keeping product discovery accessible from the same experience.</p>
+            </section>
+
+            <!-- What I Learned / Next Steps -->
+            <section class="project-section project-section-last">
+                <h2 class="project-section-title">What I Learned / Next Steps</h2>
+                <div class="project-learnings-grid">
+                    <div class="project-learnings-column">
+                        <h4 class="project-list-heading">Key Learnings</h4>
+                        <ul class="project-bullet-list">
+                            <li>Conversation-first onboarding increased trust and time-in-app</li>
+                            <li>Progressive disclosure reduced drop-off compared to long forms</li>
+                            <li>Linking chat to curated collections improved relevance and conversion</li>
+                            <li>Clear fallbacks and error states were critical for NLP reliability</li>
+                        </ul>
+                    </div>
+                    <div class="project-learnings-column">
+                        <h4 class="project-list-heading">Future Improvements</h4>
+                        <ul class="project-bullet-list">
+                            <li>Expand personalization based on ongoing usage and feedback</li>
+                            <li>Integrate with wearables or sleep tracking for richer recommendations</li>
+                            <li>Test multi-language and accessibility enhancements</li>
+                            <li>Iterate on copy and flows based on live usage data</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/vannyyeh/" target="_blank" class="social-link">
+                        <img src="assets/linkedin.svg" alt="LinkedIn" class="social-icon">
+                    </a>
+                    <a href="mailto:vannyyeh@gmail.com" class="social-link" target="_blank">
+                        <img src="assets/email.svg" alt="Email" class="social-icon">
+                    </a>
+                </div>
+                <p class="footer-copyright">© 2026 Vanny Yeh</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

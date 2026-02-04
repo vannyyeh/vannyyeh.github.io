@@ -1,5 +1,18 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Valehealth page: subtle load reveal
+    const vhPage = document.querySelector('.redesign-portfolio-landing-page.vh-enter');
+    if (vhPage) {
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            vhPage.classList.add('vh-enter--active');
+        } else {
+            requestAnimationFrame(() => {
+                vhPage.classList.add('vh-enter--active');
+            });
+        }
+    }
+
     // Header scroll effect
     const header = document.querySelector('.header');
     
