@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
                 role: "designer",
-                rest: ", imagining how products should feel and function."
+                rest: ", imagining how products should feel."
             },
             {
                 role: "developer",
