@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Header scroll effect
+    // Header scroll effect (use classes; avoid inline styles so page CSS can theme)
     const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.8)';
-        }
-    });
+
+    if (header) {
+        const updateHeaderOnScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            header.classList.toggle('scrolled', scrollTop > 50);
+        };
+
+        updateHeaderOnScroll();
+        window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+    }
 
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');

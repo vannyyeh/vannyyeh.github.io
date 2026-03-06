@@ -32,7 +32,7 @@ body {
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 130px;
+    padding: 0 80px;
 }
 
 /* Header Styles */
@@ -1246,7 +1246,7 @@ body {
 
 @media (max-width: 1200px) {
     .container {
-        padding: 0 60px;
+        padding: 0 80px;
     }
     
     .contact-skills-grid {
@@ -1266,6 +1266,12 @@ body {
     
     .project-card {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        padding: 0 40px;
     }
 }
 
@@ -1368,9 +1374,15 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+    .container {
+        padding: 0 24px;
+    }
+}
+
 @media (max-width: 480px) {
     .container {
-        padding: 0 20px;
+        padding: 0 24px;
     }
     
     .nav {
