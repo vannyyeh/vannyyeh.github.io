@@ -431,6 +431,7 @@ body {
     align-items: center;
     gap: 11.12px;
     height: 34px;
+    position: relative;
 }
 
 .project-bullet {
@@ -454,6 +455,21 @@ body {
     height: 16.68px;
     flex-shrink: 0;
     margin-left: auto;
+}
+
+.project-case-study {
+    position: absolute;
+    top: -10px;
+    right: 28px; /* keep clear of the arrow */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #717182;
+    white-space: nowrap;
+    pointer-events: none;
 }
 
 .project-tags {
