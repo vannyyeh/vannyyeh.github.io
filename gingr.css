@@ -92,7 +92,6 @@ body.gingr-page {
   margin: 0;
 }
 
-.gingr-page .gingr-case h1,
 .gingr-page .gingr-case h2,
 .gingr-page .gingr-case h3,
 .gingr-page .gingr-case h4,
@@ -101,6 +100,15 @@ body.gingr-page {
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--ink);
+  padding-bottom: 6px;
+}
+
+.gingr-page .gingr-case h1{
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  padding-bottom: 15px;
 }
 
 .gingr-page .gingr-case p {
@@ -176,6 +184,7 @@ body.gingr-page {
 .gingr-hero h1 .accent {
   color: #EE4542;
   font-style: italic;
+  margin-right: 0.2em;
 }
 
 .gingr-hero h1 .hero-title-alt {
