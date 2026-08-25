@@ -50,6 +50,16 @@ body.gingr-page {
   height: 62px;
 }
 
+.gingr-page .header,
+.gingr-page .header.scrolled {
+  background: var(--bg-band);
+}
+
+.gingr-page .header .container {
+  max-width: var(--maxw);
+  padding: 0 40px;
+}
+
 .gingr-page .logo-img {
   width: 29px;
   height: 24px;
@@ -145,25 +155,31 @@ body.gingr-page {
 }
 
 .gingr-page .hero-projectmark img {
-  height: 46px;
+  height: 69px;
   width: auto;
 }
 
 .gingr-page .hero-grid {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
-  gap: 56px;
-  align-items: center;
-  margin-top: 36px;
+  grid-template-columns:45fr 40fr;
+  gap: 5px;
+  align-items: end;
+  margin-top: 5px;
 }
 
 .gingr-hero h1 {
-  font-size: clamp(2.15rem, 4vw, 3.05rem);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.365rem, 4.4vw, 3.355rem);
   line-height: 1.14;
 }
 
 .gingr-hero h1 .accent {
-  color: var(--coral);
+  color: #EE4542;
+  font-style: italic;
+}
+
+.gingr-hero h1 .hero-title-alt {
+  font-family: 'Inter', sans-serif;
 }
 
 .gingr-page .hero-sub {
@@ -202,10 +218,29 @@ body.gingr-page {
 }
 
 
+.gingr-page .hero-grid .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.gingr-page .hero-grid .device-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.gingr-page .hero-grid .device-frame img {
+  transform: scale(1.12);
+  transform-origin: bottom right;
+}
+
 @media (max-width: 860px) {
   .gingr-page .hero-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .gingr-page .hero-grid .device-frame img {
+    transform: none;
   }
 
   .gingr-hero {
@@ -263,9 +298,13 @@ body.gingr-page {
 }
 
 /* Overview */
+.gingr-page .overview-header {
+  margin-bottom: 44px;
+}
+
 .gingr-page .overview-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: start;
 }
@@ -274,7 +313,7 @@ body.gingr-page {
   font-size: 16.5px;
   color: #33363c;
   line-height: 1.75;
-  margin-bottom: 34px;
+  margin-bottom: 0;
 }
 
 .gingr-page .meta-list {
@@ -312,10 +351,19 @@ body.gingr-page {
   line-height: 1.55;
 }
 
+.gingr-page .overview-grid .device-frame img {
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
 @media (max-width: 860px) {
   .gingr-page .overview-grid {
     grid-template-columns: 1fr;
     gap: 36px;
+  }
+
+  .gingr-page .overview-grid .device-frame img {
+    transform: none;
   }
 }
 
