@@ -73,7 +73,7 @@
     <div class="sec-index"><span class="sec-index-label">Overview</span><span class="sec-index-num">[i]</span></div>
     <div class="overview-header">
       <h2 class="sec-title">Gingr: Pet-Care Booking Workflow Redesign</h2>
-      <p class="overview-para">Gingr is CRM software that runs daily operations for pet-care businesses — daycares, boarding facilities, and grooming salons. This project redesigned its highest-frequency, highest-friction workflow: booking a reservation. By reorganizing customer and pet data around the task, breaking one long form into a guided flow, and rebuilding the result in real front-end code, the goal was a prototype staff could actually use, and an engineer could actually build from.</p>
+      <p class="overview-para">Gingr is CRM software that runs daily operations for pet-care businesses: daycares, boarding facilities, and grooming salons. This project redesigned its highest-frequency used, highest-friction workflow: booking a reservation. By reorganizing customer and pet data around the task, breaking one long form into a guided flow, and rebuilding the result in real front-end code, the goal was a prototype staff could actually use, and something an engineer could actually build from.</p>
     </div>
     <div class="overview-grid">
       <div class="meta-list">
@@ -94,7 +94,7 @@
       <div class="outcome-card">
         <div class="outcome-icon">↻</div>
         <h5>Streamlined the workflow</h5>
-        <p>Turned one long form into a guided, three-step flow for front-desk staff.</p>
+        <p>Turned one long form into a guided, 3 steps flow for front-desk staff.</p>
       </div>
       <div class="outcome-card">
         <div class="outcome-icon">⊞</div>
@@ -103,8 +103,8 @@
       </div>
       <div class="outcome-card">
         <div class="outcome-icon">&lt;/&gt;</div>
-        <h5>Shipped real front-end code</h5>
-        <p>Rebuilt in HTML/CSS with Cursor — opens in a browser, not just a click-through.</p>
+        <h5>Shipped real front-end code and protoype</h5>
+        <p>Rebuilt in HTML/CSS/JS with Cursor and Claude, so it opens in a browser instead of just a mockup.</p>
       </div>
       <div class="outcome-card">
         <div class="outcome-icon">⬡</div>
@@ -120,23 +120,23 @@
 
     <div class="subhead-block">
       <h4>Context</h4>
-      <p class="prose">CRM tools are the backbone of pet-care businesses — one system runs the whole day, from the front desk to the kennel. In a scan of public user feedback across the category, Gingr's CRM consistently surfaced as the most cited pain point — more than pricing, more than support response time.</p>
+      <p class="prose">CRM tools are the backbone of pet-care businesses: one system runs the whole day, from the front desk to the kennel. In a scan of public user feedback across the category, Gingr's CRM consistently surfaced as a major pain point in public user feedback.</p>
     </div>
 
     <div class="subhead-block">
       <h4>Core problem</h4>
-      <p class="prose">Booking is the highest-frequency task in the system, and today it's one long form: staff can't see service conflicts, pet history, or staff availability until they've already committed to a reservation. Four patterns showed up repeatedly:</p>
+      <p class="prose">Booking is the highest-frequency used task in the system, and today it's one long form: staff can't see service conflicts, pet history, or staff availability until they've already committed to a reservation. Four patterns showed up repeatedly:</p>
       <div class="mini-list">
-        <div class="mini-item"><div class="mi-name">Fragmented information</div><div class="mi-desc">Customer, pet, and service data are separated across steps, so staff re-enter or re-find things they already know.</div></div>
+        <div class="mini-item"><div class="mi-name">Fragmented information</div><div class="mi-desc">Customer, pet, and service data are separated across steps, so staff have to re-enter details that are already sitting somewhere else in the system.</div></div>
         <div class="mini-item"><div class="mi-name">Hidden dependencies</div><div class="mi-desc">Staff availability and service constraints aren't surfaced early, so conflicts appear only after work is already done.</div></div>
-        <div class="mini-item"><div class="mi-name">Poor visibility</div><div class="mi-desc">Users can't easily see how a decision earlier in the flow affects the steps that come after it.</div></div>
+        <div class="mini-item"><div class="mi-name">Poor visibility</div><div class="mi-desc">An early choice, like booking type or pet, can affect groomer availability or add-ons down the line, but staff have no way to see that until they get there.</div></div>
         <div class="mini-item"><div class="mi-name">Edge cases break the flow</div><div class="mi-desc">Multi-pet or multi-groomer scenarios fall outside the happy path and require manual workarounds.</div></div>
       </div>
     </div>
 
     <div class="subhead-block">
       <h4>Opportunity</h4>
-      <p class="prose">Booking touches nearly every other module — customers, pets, staff, calendar, payments — and breaks down fastest under ordinary edge cases. That combination of high frequency, high friction, and a scope small enough to prototype well solo made it the right entry point, rather than trying to rework the whole CRM.</p>
+      <p class="prose">Booking touches nearly every other module (customers, pets, staff, calendar, payments) and breaks down fastest under ordinary edge cases. That combination of high frequency, high friction, and a scope small enough to prototype well solo made it the right entry point, rather than trying to rework the whole CRM.</p>
     </div>
   </div>
 </section>
@@ -149,14 +149,14 @@
       <div class="mini-list">
         <div class="mini-item"><div class="mi-name">Unify the data</div><div class="mi-desc">Bring customer, pet, and service data into one continuous view instead of separate steps.</div></div>
         <div class="mini-item"><div class="mi-name">Surface constraints early</div><div class="mi-desc">Show staff and service availability before the user commits, not after.</div></div>
-        <div class="mini-item"><div class="mi-name">Make impact visible</div><div class="mi-desc">Let staff see how each decision affects the steps that follow it, in real time.</div></div>
+        <div class="mini-item"><div class="mi-name">Make impact visible</div><div class="mi-desc">Let users see how each decision affects the steps that follow it, in real time.</div></div>
         <div class="mini-item"><div class="mi-name">Support real-world complexity</div><div class="mi-desc">Handle multi-pet and multi-groomer bookings without manual workarounds.</div></div>
       </div>
     </div>
 
     <div class="subhead-block">
-      <h4>Why booking — scope criteria</h4>
-      <p class="prose" style="margin-bottom:4px;">Four candidate areas came out of research. Booking was the clear starting point: highest-frequency task, touches every other module, and scoped small enough to prototype well within a self-directed project.</p>
+      <h4>Why booking ?</h4>
+      <p class="prose" style="margin-bottom:4px;">Four candidate areas came out of research. Booking was the clear starting point: highest frequency, the widest reach across other modules, and a scope realistic for a 4-hour, AI-assisted build.</p>
       <div class="opp-list">
         <div class="opp-row"><span class="opp-name">Complex Booking</span><span class="opp-tag selected">Selected</span></div>
         <div class="opp-row"><span class="opp-name">Calendar Clutter</span><span class="opp-tag other">Parked</span></div>
