@@ -644,64 +644,14 @@ body.gingr-page {
 }
 
 .gingr-page .dd {
-  position: relative;
   width: 100%;
   max-width: 380px;
-  height: 170px;
   margin: 0 auto;
 }
 
-.gingr-page .dd-diamond {
-  position: absolute;
-  top: 15px;
-  width: 135px;
-  height: 135px;
-  border-radius: 18px;
-}
-
-.gingr-page .dd-diamond.problem {
-  left: 15px;
-  transform: rotate(45deg);
-  background: linear-gradient(135deg, var(--coral-soft), #fff);
-  border: 2px solid var(--coral);
-}
-
-.gingr-page .dd-diamond.solution {
-  left: 135px;
-  transform: rotate(45deg);
-  background: linear-gradient(135deg, #fff, #E9EEF1);
-  border: 2px solid var(--slate);
-}
-
-.gingr-page .dd-label {
-  position: absolute;
-  top: 72px;
-  width: 135px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 13px;
-}
-
-.gingr-page .dd-label.problem {
-  left: 15px;
-  color: var(--coral);
-}
-
-.gingr-page .dd-label.solution {
-  left: 135px;
-  color: var(--slate);
-}
-
-.gingr-page .dd-sub {
-  position: absolute;
-  bottom: 0;
+.gingr-page .dd img {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 10.5px;
-  color: var(--ink-faint);
-  font-weight: 600;
-  padding: 0 2px;
+  height: auto;
 }
 
 @media (max-width: 860px) {
