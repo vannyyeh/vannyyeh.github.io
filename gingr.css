@@ -365,6 +365,10 @@ body.gingr-page {
   transform-origin: center;
 }
 
+.device-frame{
+  margin-top: 40px;
+}
+
 @media (max-width: 860px) {
   .gingr-page .overview-grid {
     grid-template-columns: 1fr;
@@ -858,6 +862,23 @@ body.gingr-page {
   .gingr-page .annot-grid {
     grid-template-columns: 1fr;
     gap: 26px;
+  }
+}
+
+.gingr-page .annot-list-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  gap: 28px 32px;
+}
+
+.gingr-page .annot-list-grid .annot-item {
+  flex: 1 1 260px;
+}
+
+@media (max-width: 640px) {
+  .gingr-page .annot-list-grid .annot-item {
+    flex: 1 1 100%;
   }
 }
 

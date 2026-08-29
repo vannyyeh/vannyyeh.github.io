@@ -267,70 +267,31 @@
 </section>
 <section id="interaction" style="background:var(--bg-band);">
   <div class="wrap">
-    <div class="sec-index"><span class="sec-index-label">Interaction Design &amp; Prototypes</span><span class="sec-index-num">[vi]</span></div>
-    <p class="prose" style="margin-bottom:60px;">Three moments in the flow show the shift most clearly: the dashboard staff land on every day, the entry point into a new booking, and the screen where a booking actually gets confirmed.</p>
+    <div class="sec-index"><span class="sec-index-label">Design Solutions</span><span class="sec-index-num">[vi]</span></div>
+    <p class="prose" style="margin-bottom:60px;">Two moments in the flow show the shift most clearly: the dashboard staff land on every day, the entry point into a new booking, and the screen where a booking actually gets confirmed.</p>
 
     <!-- Dashboard -->
     <div class="subhead-block" style="margin-bottom:70px;">
-      <h4 style="font-size:19px; margin-bottom:6px;">Dashboard — from a status report to a control center</h4>
-      <p class="prose" style="margin-bottom:28px;">The old dashboard was a dense operations log — accurate, but it didn't tell staff what to do next. The redesign leads with today's actions, not yesterday's data.</p>
-      <div class="ba-grid">
-        <div>
-          <div class="screen-frame"><span class="screen-tag old">Old</span><img loading="lazy" src="assets/Gingr-Asset/old-landing.png" alt="Existing Gingr dashboard"></div>
-          <p class="screen-cap">Current Gingr dashboard — a checked-in reservations log.</p>
-        </div>
-        <div>
-          <div class="screen-frame"><span class="screen-tag new">New</span><img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned Gingr dashboard"></div>
-          <p class="screen-cap">Redesigned dashboard — leads with today's arrivals, occupancy, and one-tap actions.</p>
-        </div>
-      </div>
-      <div class="annot-grid">
-
-        <div class="screen-frame"><img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned dashboard, annotated"></div>
-        <div class="annot-list">
-          <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Clear workflow entry</h5><p>One-tap actions for the day's most common tasks.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Information hierarchy</h5><p>Occupancy and traffic are scannable at a glance.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>Action visibility</h5><p>Check-in status lives directly on each schedule row.</p></div></div>
-        </div>
+      <h4 style="font-size:19px; margin-bottom:6px;">Dashboard: from a status report to a control center</h4>
+      <p class="prose" style="margin-bottom:28px;">The old dashboard was a dense operations log. It wasaccurate, but it didn't tell staff what to do next. The redesign leads with today's actions, not yesterday's data.</p>
+      <div class="screen-frame" style="margin-bottom:36px;"><img loading="lazy" src="assets/Gingr-Asset/dashboard.jpg" alt="Gingr dashboard before and after redesign"></div>
+      <div class="annot-list annot-list-grid">
+        <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Clear workflow entry</h5><p>One-tap actions for the day's most common tasks. Reducing cognitive load and making actions more direct.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Information hierarchy</h5><p>Allowing users to prioritize what to act on versus what to monitor.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>Action visibility</h5><p>Check-in status lives directly on each schedule row. Reducing interaction cost and improving task completion speed.</p></div></div>
       </div>
     </div>
 
-    <!-- Booking entry -->
-    <div class="subhead-block" style="margin-bottom:70px;">
-      <h4 style="font-size:19px; margin-bottom:6px;">Booking — one long form becomes a guided flow</h4>
-      <p class="prose" style="margin-bottom:28px;">The old reservation form asked for location, type, pet, and dates all at once, with no sense of progress. The redesign breaks it into three legible steps: Customer, Booking Type, Services.</p>
-      <div class="ba-grid">
-        <div>
-          <div class="screen-frame"><span class="screen-tag old">Old</span><img loading="lazy" src="assets/Gingr-Asset/old-booking.png" alt="Existing Gingr reservation form"></div>
-          <p class="screen-cap">Current "New Reservation" form — one long page, no progress indicator.</p>
-        </div>
-        <div>
-          <div class="screen-frame"><span class="screen-tag new">New</span><img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned booking entry step"></div>
-          <p class="screen-cap">Redesigned flow — Customer → Booking Type → Services, with a persistent summary panel.</p>
-        </div>
-      </div>
-      <div class="annot-grid">
-        <div class="screen-frame"><img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned booking entry, annotated"></div>
-        <div class="annot-list">
-          <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Progressive disclosure</h5><p>Booking type and services activate only once a customer is selected.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Customer-first data model</h5><p>Reflects real behavior, where one owner often manages multiple pets.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>Dependency communicated clearly</h5><p>The summary panel makes the next requirement explicit.</p></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Booking summary -->
+    <!-- Booking flow -->
     <div class="subhead-block">
-      <h4 style="font-size:19px; margin-bottom:6px;">Booking after selection — every decision made visible</h4>
-      <p class="prose" style="margin-bottom:28px;">Once a customer and booking type are chosen, the flow pulls in what the CRM already knows — pet history, vaccination status, preferred groomer — instead of asking staff to remember or look it up.</p>
-      <div class="annot-grid" style="margin-top:0;">
-        <div class="screen-frame"><img loading="lazy" src="assets/Gingr-Asset/booking-selected service.png" alt="Redesigned booking after selecting a customer and pet"></div>
-        <div class="annot-list">
-          <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Multi-pet booking</h5><p>Bundle multiple services within a single workflow.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Pulled CRM data</h5><p>Relevant history, like Louie's anxiety flag, surfaces automatically.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>Inline decision support</h5><p>Vaccination status appears right where the decision is made.</p></div></div>
-          <div class="annot-item"><div class="annot-num" style="background:#8A93A1;">4</div><div><h5>Booking summary</h5><p>A running total reduces the need to mentally track what's added.</p></div></div>
-        </div>
+      <h4 style="font-size:19px; margin-bottom:6px;">Booking: from a long form to a guided, confirmed reservation</h4>
+      <p class="prose" style="margin-bottom:28px;">The old reservation form asked for location, type, pet, and dates all at once, with no sense of progress. The redesign breaks it into three legible stepsCustomer, Booking Type, Services.</p>
+      <div class="screen-frame" style="margin-bottom:36px;"><img loading="lazy" src="assets/Gingr-Asset/booking.jpg" alt="Gingr booking flow before and after redesign"></div>
+      <div class="annot-list annot-list-grid">
+        <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Guided 3-step flow</h5><p>Customer → Booking Type → Services replaces one long form, so progress and the next step are always clear.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Customer-first, multi-pet model</h5><p>Reflects real behavior, where one owner can manage multiple pets and bundle several services into a single booking.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>CRM context, surfaced automatically</h5><p>Pet history, vaccination status, and preferred groomer appear right where the decision is made, no need to look them up.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:#8A93A1;">4</div><div><h5>Dependencies and cost made visible</h5><p>The persistent summary panel shows what's required next and keeps a running total, so nothing has to be tracked mentally. <br>Providing continuous feedback and reducing the need for mental tracking.</p></div></div>
       </div>
     </div>
   </div>
