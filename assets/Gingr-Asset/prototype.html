@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pet Grooming CRM – Booking Flow</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8f9ff;min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:210px;background:#f9f9f9;border-right:1px solid #f1f5f9;display:flex;flex-direction:column;justify-content:space-between;padding:22px 10px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:18px}
+.logo-wrap img{width:110px;object-fit:contain}
+.quick-btn{width:100%;background:#ee4542;border:none;border-radius:99px;padding:9px;color:#fff;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:16px;font-family:inherit}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:9px;cursor:pointer;margin-bottom:1px}
+.nav-item.active{background:#fff}
+.nav-item span{font-size:12px;font-weight:600;color:#dc2626}
+.nav-item.inactive span{font-weight:500;font-size:13px;color:#475569;font-family:'Plus Jakarta Sans',sans-serif}
+.sidebar-footer{border-top:1px solid #e2e8f0;padding-top:10px}
+.sidebar-footer-item{display:flex;align-items:center;gap:9px;padding:5px 0;cursor:pointer;font-size:12px;color:#64748b}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topnav{height:52px;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:10;flex-shrink:0}
+.search-wrap{position:relative;width:280px}
+.search-wrap input{width:100%;padding:6px 11px 6px 31px;border-radius:99px;border:none;background:#eef4ff;font-size:12px;color:#6b7280;outline:none;font-family:inherit}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%)}
+.topnav-right{display:flex;align-items:center;gap:12px}
+.nav-icon-btn{background:none;border:none;cursor:pointer;padding:5px;display:flex;border-radius:99px}
+.user-pill{display:flex;align-items:center;gap:7px;background:#eef4ff;padding:4px 9px;border-radius:99px}
+.uavatar{width:22px;height:22px;border-radius:50%;background:#b7141d;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0}
+.user-pill span{font-size:12px;font-weight:600;color:#334155}
+.page-wrap{padding:24px 20px 60px;overflow-y:auto;flex:1}
+.content{max-width:860px;width:100%}
+.breadcrumb{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.breadcrumb span{font-size:12px;color:#94a3b8}
+.breadcrumb .cur{color:#0f172a;font-weight:500}
+.page-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;color:#001d34;letter-spacing:-0.6px;line-height:1.2;margin-bottom:5px}
+.page-sub{font-size:13px;color:#5b403d;margin-bottom:20px}
+.stepper{background:#eef4ff;border-radius:14px;padding:6px;display:flex;align-items:center;margin-bottom:28px;width:fit-content}
+.step{display:flex;align-items:center;gap:6px;padding:6px 13px;border-radius:9px}
+.step.active{background:#fff;border:1px solid rgba(228,190,186,0.2);box-shadow:0 1px 2px rgba(0,0,0,0.05)}
+.step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.step-num.a{background:#b7141d;color:#fff}
+.step-num.i{background:rgba(228,190,186,0.3);color:#5b403d}
+.step-lbl{font-size:12px;font-weight:600;white-space:nowrap}
+.step-lbl.a{color:#b7141d}.step-lbl.d{color:#00a63e}.step-lbl.i{color:#5b403d}
+.sdivider{width:18px;height:1px;background:rgba(228,190,186,0.4);margin:0 1px;flex-shrink:0}
+.two-col{display:flex;gap:20px;align-items:flex-start}
+.left-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:28px}
+.right-col{width:262px;flex-shrink:0;position:sticky;top:64px}
+.sec-lbl{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;color:#001d34;margin-bottom:2px}
+.sec-sub{font-size:12px;color:#5b403d;margin-bottom:10px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
+.search-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.find-lbl{font-size:12px;font-weight:600;color:#334155}
+.add-new-btn{background:none;border:none;cursor:pointer;font-size:12px;font-weight:600;color:#b7141d;font-family:inherit}
+.sf{position:relative;width:100%}
+.sf input{width:100%;padding:11px 12px 11px 38px;border-radius:9px;border:none;background:#f8f9ff;box-shadow:0 0 0 1px rgba(228,190,186,0.35);font-size:13px;color:#001d34;outline:none;font-family:inherit}
+.si{position:absolute;left:11px;top:50%;transform:translateY(-50%);pointer-events:none}
+.results{margin-top:5px;border-radius:7px;overflow:hidden;border:1px solid #e2e8f0}
+.rrow{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:none;border-bottom:1px solid #f1f5f9;cursor:pointer;width:100%;text-align:left;transition:background 0.1s}
+.rrow:last-child{border-bottom:none}
+.rrow:hover{background:#f8f9ff}
+.rav{width:32px;height:32px;border-radius:50%;background:#b7141d;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:11px;flex-shrink:0}
+.rname{font-size:12px;font-weight:600;color:#001d34}
+.rphone{font-size:11px;color:#64748b;margin-top:1px}
+.ptags{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.ptag{padding:2px 8px;border-radius:99px;background:#eef4ff;font-size:10px;color:#4f6ef7;font-weight:500}
+.cust-card{background:#fff;border:1px solid rgba(228,190,186,0.15);border-radius:16px;padding:18px;display:flex;align-items:flex-start;gap:15px}
+.cav{width:50px;height:50px;border-radius:11px;background:#c4c4c4;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.cname{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:#001d34;margin-bottom:4px}
+.ccontact{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.cci{display:flex;align-items:center;gap:4px;font-size:12px;color:#5b403d}
+.change-btn{margin-left:auto;border:1px solid #b0b0b0;border-radius:9px;padding:4px 10px;font-size:12px;font-weight:600;color:#b0b0b0;background:none;cursor:pointer;flex-shrink:0;font-family:inherit}
+.pet-select-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.pet-chip{display:flex;align-items:center;gap:6px;padding:6px 13px;border-radius:99px;border:1.5px solid #e2e8f0;background:#fff;cursor:pointer;font-size:12px;font-weight:600;color:#475569;transition:all 0.15s;font-family:inherit}
+.pet-chip.sel{border-color:#b7141d;background:rgba(183,20,29,0.06);color:#b7141d}
+.pet-chip-dot{width:7px;height:7px;border-radius:50%;background:#e2e8f0;flex-shrink:0;transition:background 0.15s}
+.pet-chip.sel .pet-chip-dot{background:#b7141d}
+.pt-lbl{font-size:10px;font-weight:700;color:#5b403d;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;margin-top:8px}
+.bt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.btc{background:#fff;border:2px solid transparent;border-radius:11px;padding:18px;cursor:pointer;text-align:left;position:relative;box-shadow:0 1px 2px rgba(0,0,0,0.05);transition:all 0.2s;font-family:inherit;width:100%}
+.btc.active{border-color:#b7141d;box-shadow:0 3px 12px rgba(183,20,29,0.1)}
+.bt-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.bt-icon.a{background:rgba(183,20,29,0.1)}
+.bt-icon.i{background:#f1f5f9}
+.bt-name{font-size:14px;font-weight:600;color:#001d34;text-align:left}
+.bt-check{position:absolute;top:12px;right:12px;width:16px;height:16px}
+.svc-locked{background:#eef4ff;border-radius:18px;padding:32px 24px;text-align:center;border:2px dashed #cbd5e1}
+.svc-locked-text{font-size:12px;color:#475569;line-height:1.6;margin-top:12px}
+.svc-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px}
+.add-pet-btn{display:flex;align-items:center;gap:5px;border:1px solid rgba(183,20,29,0.25);border-radius:9px;padding:6px 12px;background:none;cursor:pointer;font-size:12px;font-weight:600;color:#b7141d;transition:background 0.15s;font-family:inherit}
+.add-pet-btn:hover{background:rgba(183,20,29,0.05)}
+.pfc{background:#fff;border:1px solid rgba(228,190,186,0.15);border-radius:18px;padding:22px 20px 20px;position:relative;box-shadow:0 1px 2px rgba(0,0,0,0.05);margin-bottom:14px}
+.pfc-close{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;display:flex;padding:3px;border-radius:5px;opacity:0.6}
+.pfc-close:hover{opacity:1;background:#f1f5f9}
+.ab{position:absolute;top:12px;left:20px;background:#fee2e2;border-radius:99px;padding:2px 9px;font-size:9px;font-weight:700;color:#dc2626;letter-spacing:1px;text-transform:uppercase}
+.pfc-head{display:flex;gap:32px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+.pp{width:64px;height:64px;border-radius:13px;background:#c4c4c4;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#fff;flex-shrink:0}
+.pname{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#001d34;letter-spacing:-0.4px}
+.pbreed{font-size:13px;color:#5b403d;margin-top:2px}
+.page{font-size:12px;color:#64748b;margin-top:2px;font-style:italic}
+.vax{background:#f0fdf4;border:1px solid #b9f8cf;border-radius:7px;padding:7px 11px;display:flex;align-items:flex-start;gap:8px;flex-shrink:0}
+.vax-t{font-size:9px;font-weight:800;color:#016630;letter-spacing:0.6px;text-transform:uppercase}
+.vax-v{font-size:11px;font-weight:600;color:#008236;margin-top:1px}
+.fl{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.flbl{font-size:10px;font-weight:800;color:#5b403d;letter-spacing:1.1px;text-transform:uppercase}
+.fsel,.finp{background:#eef4ff;border:none;border-radius:9px;padding:0 12px;height:40px;font-size:13px;font-weight:600;color:#001d34;width:100%;outline:none;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none}
+.finp{cursor:text}
+.fsw{position:relative}
+.fsw-ic{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}
+.twofl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.fwi{position:relative}
+.fwi .finp{padding-left:34px}
+.fi{position:absolute;left:11px;top:50%;transform:translateY(-50%);pointer-events:none}
+.adw{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
+.adchip{display:flex;align-items:center;gap:5px;background:#eef4ff;border-radius:9px;padding:6px 12px 6px 10px;border:none;cursor:pointer;font-size:12px;font-weight:600;color:#001d34;font-family:inherit;transition:background 0.1s}
+.adchip:hover{background:#e2ebff}
+.cbx{width:15px;height:15px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cbx.chk{background:#ee4542}
+.cbx.unchk{background:#fff;border:1px solid #e4beba}
+/* View all add-ons panel */
+.addon-panel{background:#f8f9ff;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;margin-top:4px}
+.addon-panel-title{font-size:10px;font-weight:800;color:#5b403d;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.view-all{background:none;border:none;cursor:pointer;font-size:11px;font-weight:600;color:#b7141d;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px}
+.instr textarea{background:#eef4ff;border:none;border-radius:9px;padding:10px 12px;font-size:12px;color:#001d34;width:100%;outline:none;font-family:inherit;resize:vertical;min-height:46px}
+.sum-card{background:#fff;border:1px solid rgba(228,190,186,0.12);border-radius:18px;padding:22px;box-shadow:0 14px 36px rgba(21,41,90,0.06)}
+.sum-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;color:#001d34;margin-bottom:18px}
+.empty-ic{width:70px;height:70px;border-radius:50%;background:#eef4ff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.empty-t{font-size:14px;font-weight:600;color:#001d34;margin-bottom:7px;text-align:center}
+.empty-tx{font-size:12px;color:#5b403d;line-height:1.7;text-align:center}
+.srow{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+.sic{width:32px;height:32px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.slbl{font-size:10px;color:#94a3b8;margin-bottom:1px;text-transform:uppercase;letter-spacing:0.5px}
+.sval{font-size:12px;font-weight:600;color:#001d34}
+.ssub{font-size:11px;color:#475569}
+.litems{border-top:1px solid #f1f5f9;padding-top:12px;margin-top:4px;display:flex;flex-direction:column;gap:5px}
+.li{display:flex;justify-content:space-between;font-size:12px}
+.li .ln{color:#64748b}.li .lp{font-weight:600;color:#0f172a}
+.li-pet-hdr{font-size:11px;font-weight:700;color:#334155;margin-top:6px;margin-bottom:2px}
+.trow{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f1f5f9;padding-top:12px;margin-top:6px}
+.tl{font-size:12px;font-weight:600;color:#0f172a}
+.tp{font-size:18px;font-weight:700;color:#b7141d}
+.cfm-btn{width:100%;margin-top:14px;padding:13px;border:none;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all 0.2s;font-family:inherit}
+.cfm-btn.ok{background:#b7141d;color:#fff}
+.cfm-btn.no{background:#f1f5f9;color:#94a3b8;cursor:not-allowed}
+.draft-btn{width:100%;margin-top:3px;padding:7px;border:none;background:none;cursor:pointer;font-size:12px;color:#94a3b8;font-family:inherit}
+.ncgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.fsp{grid-column:1/span 2}
+.fclbl{font-size:11px;font-weight:500;color:#334155;margin-bottom:3px;display:block}
+.fci{width:100%;padding:8px 11px;border-radius:9px;border:1px solid #e2e8f0;background:#eef4ff;font-size:13px;color:#001d34;outline:none;font-family:inherit}
+.fci:focus{border-color:#b7141d;box-shadow:0 0 0 2px rgba(183,20,29,0.1)}
+.szrow{display:flex;gap:7px;margin-top:6px}
+.szbtn{padding:5px 14px;border-radius:99px;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.15s;font-family:inherit}
+.szbtn.sel{border:2px solid #b7141d;background:rgba(183,20,29,0.07);color:#b7141d}
+.szbtn.unsel{border:1.5px solid #e2e8f0;background:#fff;color:#64748b}
+.fbk{background:none;border:none;cursor:pointer;font-size:11px;color:#94a3b8;margin-bottom:13px;padding:0;font-family:inherit}
+.fsub{width:100%;padding:11px;background:#b7141d;color:#fff;border:none;border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;margin-top:14px;font-family:inherit}
+.errmsg{color:#b7141d;font-size:11px;margin-top:8px}
+.cfmd{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:40px}
+.cfmd-box{background:#fff;border-radius:18px;padding:44px 36px;text-align:center;box-shadow:0 18px 46px rgba(21,41,90,0.1);max-width:380px}
+.cfmd-ic{width:60px;height:60px;border-radius:50%;background:#f0fdf4;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.cfmd-t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#001d34;margin-bottom:9px}
+.cfmd-tx{font-size:13px;color:#5b403d;line-height:1.8;margin-bottom:4px}
+.cfmd-tot{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:17px;color:#b7141d;margin:14px 0 22px}
+.nbtn{padding:11px 28px;background:#b7141d;color:#fff;border:none;border-radius:99px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;cursor:pointer}
+.nr{margin-top:5px;padding:10px 13px;background:#f8f9ff;border-radius:7px;font-size:12px;color:#94a3b8;text-align:center}
+.nr button{background:none;border:none;color:#b7141d;cursor:pointer;font-weight:600;font-size:12px;font-family:inherit}
+/* Add card modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:100;display:flex;align-items:center;justify-content:center}
+.modal{background:#fff;border-radius:16px;padding:28px;width:400px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;color:#001d34;margin-bottom:6px}
+.modal-sub{font-size:12px;color:#5b403d;margin-bottom:18px}
+.modal-opt{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.modal-btn{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-family:inherit;transition:all 0.15s;width:100%}
+.modal-btn:hover{border-color:#b7141d;background:rgba(183,20,29,0.03)}
+.modal-btn-icon{width:36px;height:36px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#475569}
+.modal-btn-label{font-size:13px;font-weight:600;color:#001d34}
+.modal-btn-sub{font-size:11px;color:#64748b;margin-top:1px}
+.modal-cancel{width:100%;padding:9px;border:none;background:none;cursor:pointer;font-size:12px;color:#94a3b8;font-family:inherit}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal-root"></div>
+
+<script>
+const LOGO_SRC = "data:image/png;base64,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";
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+function fmtAge(raw){
+  // "4y" → "4 years old", "1y" → "1 year old", "6m" → "6 months old"
+  if(!raw) return raw;
+  const my = raw.match(/^(\d+)y$/);
+  if(my){ const n=parseInt(my[1]); return n===1?"1 year old":n+" years old"; }
+  const mm = raw.match(/^(\d+)m$/);
+  if(mm){ const n=parseInt(mm[1]); return n===1?"1 month old":n+" months old"; }
+  return raw;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const CX=[
+  {id:1,name:"Eleanor Shellstrop",email:"e.shellstrop@gmail.com",phone:"512-433-8976",
+   pets:[{id:1,name:"Louie",breed:"Miniature Schnauzer",age:"4y",size:"Small",alert:"Anxiety Risk",vax:true}]},
+  {id:2,name:"Marcus Rivera",email:"m.rivera@email.com",phone:"512-555-0182",
+   pets:[{id:3,name:"Zeus",breed:"German Shepherd",age:"3y",size:"Large",alert:null,vax:true}]},
+  {id:3,name:"Sarah Johnson",email:"sarah.j@email.com",phone:"512-555-0101",
+   pets:[
+     {id:4,name:"Biscuit",breed:"Golden Retriever",age:"2y",size:"Large",alert:null,vax:false},
+     {id:5,name:"Mochi",breed:"Shih Tzu",age:"5y",size:"Small",alert:"Anxiety Risk",vax:true}
+   ]},
+  {id:4,name:"Stacy Edson",email:"stacyedson@gmail.com",phone:"512-423-8976",
+   pets:[
+     {id:6,name:"Lamo",breed:"Mixed Breed",age:"3y",size:"Medium",alert:null,vax:true},
+     {id:7,name:"Cuby",breed:"Labrador",age:"5y",size:"Large",alert:null,vax:true}
+   ]},
+  {id:5,name:"David Park",email:"david.park@gmail.com",phone:"512-667-3421",
+   pets:[
+     {id:8,name:"Coco",breed:"Pomeranian",age:"2y",size:"Small",alert:null,vax:true},
+     {id:9,name:"Milo",breed:"Beagle",age:"4y",size:"Medium",alert:"Anxiety Risk",vax:false}
+   ]},
+  {id:6,name:"Priya Sharma",email:"priya.sharma@gmail.com",phone:"512-891-5540",
+   pets:[
+     {id:10,name:"Bentley",breed:"French Bulldog",age:"3y",size:"Small",alert:null,vax:true}
+   ]},
+];
+
+const SVCS={
+  Grooming:[
+    {id:"g1",label:"Full Styling Package - Small",price:85},
+    {id:"g2",label:"Full Styling Package - Medium",price:95},
+    {id:"g3",label:"Bath & Brush - Small",price:45},
+    {id:"g4",label:"Bath & Brush - Large",price:65},
+  ],
+  Daycare:[
+    {id:"d1",label:"Full Day (8 hours)",price:38},
+    {id:"d2",label:"Half Day (4 hours)",price:22},
+    {id:"d3",label:"Supervised Play Session",price:15},
+    {id:"d4",label:"Training Add-on Session",price:28},
+  ],
+  Boarding:[
+    {id:"b1",label:"Standard Suite (per night)",price:55},
+    {id:"b2",label:"Deluxe Suite (per night)",price:75},
+    {id:"b3",label:"Premium Suite (per night)",price:95},
+    {id:"b4",label:"Extended Stay (5+ nights)",price:49},
+  ],
+};
+
+// ─── Add-ons: 2 shown by default, remaining shown in "View All" ───────────────
+const ALL_ADDONS={
+  Grooming:[
+    {id:"a1",label:"Nail Trim",price:15},
+    {id:"a2",label:"Teeth Brushing",price:10},
+    {id:"a3",label:"Ear Cleaning",price:12},
+    {id:"a4",label:"De-shedding Treatment",price:35},
+    {id:"a5",label:"Blueberry Facial",price:18},
+    {id:"a6",label:"Pawdicure & Moisturize",price:20},
+    {id:"a7",label:"Flea & Tick Treatment",price:25},
+    {id:"a8",label:"Breath Freshener",price:8},
+  ],
+  Daycare:[
+    {id:"b1",label:"Extra Play Time (1hr)",price:8},
+    {id:"b2",label:"Grooming Touch-up",price:20},
+    {id:"b3",label:"Progress Report Card",price:5},
+    {id:"b4",label:"1-on-1 Training (30min)",price:28},
+    {id:"b5",label:"Puzzle & Enrichment",price:10},
+    {id:"b6",label:"Pool / Water Play",price:12},
+    {id:"b7",label:"Midday Snack Pack",price:6},
+    {id:"b8",label:"Webcam Check-in Access",price:0},
+  ],
+  Boarding:[
+    {id:"c1",label:"Evening Walk (30min)",price:12},
+    {id:"c2",label:"Medication Administration",price:8},
+    {id:"c3",label:"Extra Playtime",price:10},
+    {id:"c4",label:"Bedtime Story & Cuddle",price:5},
+    {id:"c5",label:"Daily Bath",price:20},
+    {id:"c6",label:"Video Update (daily)",price:7},
+    {id:"c7",label:"Special Diet Prep",price:15},
+    {id:"c8",label:"Pickup & Drop-off",price:30},
+  ],
+};
+
+const GROOMERS=[{id:"m1",name:"Marcus T.",available:true},{id:"m2",name:"Jamie L.",available:true},{id:"m3",name:"Taylor R.",available:false}];
+const SVC_LBL={Grooming:"Grooming Service",Daycare:"Daycare Package",Boarding:"Boarding Package"};
+const BT_ALL=["Grooming","Daycare","Boarding"];
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
+const IC={
+  search:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="#94a3b8" stroke-width="1.4"/><path d="M9 9L12 12" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  searchD:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="#475569" stroke-width="1.4"/><path d="M9 9L12 12" stroke="#475569" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  chkGn:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" fill="#00a63e"/><path d="M4 7l2 2 4-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chkW:`<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chev:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#475569" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chevUp:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 9l4-4 4 4" stroke="#475569" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  cal:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="10.5" rx="1.5" stroke="#5b403d" stroke-width="1.2"/><path d="M4 1.5v2M10 1.5v2M1 6.5h12" stroke="#5b403d" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+  clk:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#5b403d" stroke-width="1.2"/><path d="M7 4.5v3l2 1.2" stroke="#5b403d" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+  eml:`<svg width="13" height="9" viewBox="0 0 13 9" fill="none"><rect x="0.5" y="0.5" width="12" height="8" rx="1.5" stroke="#5b403d" stroke-width="1.1"/><path d="M0.5 2l6 4 6-4" stroke="#5b403d" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  phn:`<svg width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5c.5-.5 1.3-.5 1.8.2L4.5 3.3c.4.6.2 1.4-.3 1.8l-.4.4c.6 1.1 1.3 1.9 2.2 2.4l.4-.4c.5-.5 1.2-.7 1.8-.4L9.9 8c.6.4.6 1.3.1 1.8l-.5.5c-4 .5-9-5-8-9.5l.5-.3z" stroke="#5b403d" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  grm:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3.5c0 0 1.8-1 4.5 0s4.5 1.8 7.2 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="3.5" r="1.8" stroke="currentColor" stroke-width="1.3"/><path d="M15.5 5.3v9a1.3 1.3 0 01-2.6 0V9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M4.5 8.5c1.8-1.3 5.4-1.3 7.2 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 13.5c1.8-1.8 6.3-1.8 8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  day:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v1.5M10 16.5V18M2 10h1.5M16.5 10H18M4 4l1 1M15 15l1 1M4 16l1-1M15 5l1-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  brd:`<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1.5 7.5l7.5-5.5 7.5 5.5V16a1.5 1.5 0 01-1.5 1.5H3A1.5 1.5 0 011.5 16V7.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="6.5" y="10" width="5" height="7.5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>`,
+  plus:`<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M4.5 1v7M1 4.5h7" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  plusR:`<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1v9M1 5.5h9" stroke="#b7141d" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  arr:`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  lock:`<svg width="26" height="22" viewBox="0 0 26 22" fill="none"><rect x="5" y="9" width="16" height="11" rx="2.5" stroke="#94a3b8" stroke-width="1.4"/><path d="M8 9V7.5a5 5 0 0110 0V9" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/><circle cx="13" cy="14.5" r="1.8" fill="#94a3b8"/></svg>`,
+  bkgs:`<svg width="14" height="16" viewBox="0 0 14 16" fill="none"><rect x="0.5" y="1.5" width="13" height="14" rx="1.8" stroke="#dc2626" stroke-width="1.2"/><circle cx="11" cy="1.5" r="2.2" fill="#dc2626" stroke="#fff" stroke-width="0.8"/><path d="M3 6h8M3 9h6M3 12h4" stroke="#dc2626" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  dash:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0.5" y="0.5" width="5.5" height="5.5" rx="1.2" stroke="#475569" stroke-width="1.1"/><rect x="8" y="0.5" width="5.5" height="5.5" rx="1.2" stroke="#475569" stroke-width="1.1"/><rect x="0.5" y="8" width="5.5" height="5.5" rx="1.2" stroke="#475569" stroke-width="1.1"/><rect x="8" y="8" width="5.5" height="5.5" rx="1.2" stroke="#475569" stroke-width="1.1"/></svg>`,
+  custs:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="#475569" stroke-width="1.1"/><path d="M1.5 12.5c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="#475569" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  pets:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><ellipse cx="7" cy="9" rx="4" ry="3" stroke="#475569" stroke-width="1.1"/><circle cx="3.5" cy="4" r="1.3" stroke="#475569" stroke-width="1.1"/><circle cx="10.5" cy="4" r="1.3" stroke="#475569" stroke-width="1.1"/><circle cx="1.5" cy="6.5" r="1" stroke="#475569" stroke-width="1.1"/><circle cx="12.5" cy="6.5" r="1" stroke="#475569" stroke-width="1.1"/></svg>`,
+  calN:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1.8" stroke="#475569" stroke-width="1.1"/><path d="M4 1v2.5M10 1v2.5M1 6h12" stroke="#475569" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  sett:`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2.2" stroke="#475569" stroke-width="1.1"/><path d="M7 1.5v1.2M7 11.3v1.2M1.5 7h1.2M11.3 7h1.2M3 3l.8.8M10.2 10.2l.8.8M3 11l.8-.8M10.2 3.8l.8-.8" stroke="#475569" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  settF:`<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="1.7" stroke="#64748b" stroke-width="1"/><path d="M5.5 1v1M5.5 9v1M1 5.5h1M9 5.5h1" stroke="#64748b" stroke-width="1" stroke-linecap="round"/></svg>`,
+  supp:`<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="#64748b" stroke-width="1"/><path d="M3.8 4.2a1.7 1.7 0 012.9 1.2c0 1-1.2 1.2-1.2 2.1" stroke="#64748b" stroke-width="1" stroke-linecap="round"/><circle cx="5.5" cy="8.5" r="0.5" fill="#64748b"/></svg>`,
+  own:`<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="5" r="2.5" stroke="#475569" stroke-width="1.1"/><path d="M2 13c0-3 2.5-5.5 5.5-5.5S13 10 13 13" stroke="#475569" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  dte:`<svg width="14" height="15" viewBox="0 0 14 15" fill="none"><rect x="0.5" y="2.5" width="13" height="12" rx="1.8" stroke="#475569" stroke-width="1.1"/><path d="M4 1v3M10 1v3M0.5 6.5h13" stroke="#475569" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  notif:`<svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path d="M6.5 1.5a4.5 4.5 0 014.5 4.5v3.5l1.2 1.5H0.8L2 9.5V6a4.5 4.5 0 014.5-4.5z" stroke="#334155" stroke-width="1.2"/><path d="M5 13a1.5 1.5 0 003 0" stroke="#334155" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+  help:`<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6.5" stroke="#334155" stroke-width="1.2"/><path d="M5.5 5.5a2 2 0 013.2 2.3c-.4.5-1.2.8-1.2 1.7" stroke="#334155" stroke-width="1.2" stroke-linecap="round"/><circle cx="7.5" cy="11" r="0.6" fill="#334155"/></svg>`,
+  vax:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" fill="#f0fdf4" stroke="#b9f8cf" stroke-width="1.1"/><path d="M5 8l2.2 2.2L11 6" stroke="#008236" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  close:`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 2l8 8M10 2l-8 8" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  dog:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="12" rx="5" ry="4" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="6" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M4 10c-1.5 0-2.5 1-2.5 2M16 10c1.5 0 2.5 1 2.5 2M7.5 4.5C6.5 3 5 3 4.5 4M12.5 4.5C13.5 3 15 3 15.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`,
+  paw:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="13" rx="4" ry="3" stroke="currentColor" stroke-width="1.4"/><circle cx="5.5" cy="7.5" r="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="14.5" cy="7.5" r="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="5.5" r="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="5.5" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>`,
+};
+
+// ─── State ────────────────────────────────────────────────────────────────────
+let NC={name:"",email:"",phone:"",pn:"",pb:"",sz:"Small"};
+let S={
+  cx:null,bt:"Grooming",selectedPetId:null,
+  // Each card: {petId, btType, svcId, date, time, groomer, addons, instr, showAllAddons}
+  cards:[],confirmed:false,
+  query:"",showNew:false,err:"",
+  showModal:false,
+};
+
+function inits(n){return n.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();}
+function initCard(petId, btType){
+  const bt=btType||S.bt;
+  const adns=ALL_ADDONS[bt];
+  return{petId,btType:bt,svcId:SVCS[bt][0].id,date:"04/01/2026",time:"02:00 PM",
+    groomer:"m1",addons:[adns[0]],instr:"",showAllAddons:false};
+}
+
+// ─── Render ───────────────────────────────────────────────────────────────────
+function render(){
+  const el=document.getElementById("app");if(!el)return;
+  const step=!S.cx?1:S.cards.length===0?2:3;
+
+  if(S.confirmed){
+    const allItems=S.cards.map(c=>{
+      const svcs=SVCS[c.btType];
+      const svc=svcs.find(x=>x.id===c.svcId)||svcs[0];
+      const pet=S.cx.pets.find(p=>p.id===c.petId);
+      const adnT=c.addons.reduce((t,a)=>t+a.price,0);
+      return{pet,svc,addons:c.addons,sub:svc.price+adnT,bt:c.btType};
+    });
+    const grand=allItems.reduce((t,x)=>t+x.sub,0);
+    el.innerHTML=`<div class="cfmd"><div class="cfmd-box">
+      <div class="cfmd-ic">${IC.vax}</div>
+      <div class="cfmd-t">Booking Confirmed!</div>
+      <div class="cfmd-tx"><b>${S.cx.name}</b>'s appointment has been scheduled.</div>
+      ${allItems.map(x=>`<div class="cfmd-tx">${x.pet.name} (${x.bt}): ${x.svc.label}${x.addons.length?" + "+x.addons.map(a=>a.label).join(", "):""}</div>`).join("")}
+      <div class="cfmd-tot">Total: $${grand}.00</div>
+      <button class="nbtn" onclick="resetApp()">+ New Booking</button>
+    </div></div>`;
+    renderModal();return;
+  }
+
+  // Sidebar
+  const sH=`<div class="sidebar">
+    <div>
+      <div class="logo-wrap"><img src="${LOGO_SRC}" alt="Gingr"/></div>
+      <button class="quick-btn">${IC.plus} Quick Booking</button>
+      <div class="nav-item inactive"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAF5JREFUeAHFk7ENACAIBMG4mxM4hBM5hBM4ncbChgShALzG5hMv5B9LbQsezNHxvFIugRGZ/nzhDLicvZEWzjTeiN6GYm8k9SSsR6gNXiP/Hmm3JvFvaxBmpDVw39oGX+ooSRf2ARsAAAAASUVORK5CYII=\" style=\"width:18px;height:18px;object-fit:contain;\" alt=\"\"><span>Dashboard</span></div>
+      <div class="nav-item active"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAVtJREFUeAHNlF1OwkAQx2dWDsDXAfAExBtAaRvexBNYTkA8gXoC8AT0BoQ3labFG3gDy7tQNfHF0P27i1ZrIm2JJvp/2fnaX3Ynk2FKKbKNIUCOMstUQGAxql17J4nPiXFvGY5gOmUp+rReh7mkUqkBIcdguqhd+aNN6IPKaAFiWvW8ORVTuLTbN0JyMwmIL2nGA/1Agn5RfweL7M7xyjKwMyzq9cpRt9tIgwC4Mqb+tjulbQl6fuqpJwwjy2oTy2YCqvu+uzOsMvPdpWk0iOOAQOU8UCZMq+b5ZwpIkBTmgXJhCZAK6v/OWe43o67ZgsRAAtP6LLtvIguysjoBYjkhCV041r6OF4alIAETQt6TB1XPP1LnPkgudHxldybpgf4WxqCBLn6zRVvNWr9yOQ+1r8/aLHA2UMhHxC93DD5M3//sGVitH75VBeeVjJ32Dnci03T1clT2Ism9Ak/orvaNcZppAAAAAElFTkSuQmCC\" style=\"width:18px;height:20px;object-fit:contain;\" alt=\"\"><span>Bookings</span></div>
+      <div class="nav-item inactive"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAc1JREFUeAG9Uz1SwlAQ3o2gsYs30BvgDWgUOimEscQOGGeEEwAngMIBOqVxcKDAxoHK3ABuADcwVvxJ1t3wAiEgQ6F+M0levrfve9/uvoewBdGb1CnN8ZGHIX4Mfkw8oNtOozZUcwMVuuT9GviDaE8JemGxyLkjnsgUiCjv573Bml9YOTWQqH48OzrhRWcsUhdOzQHYtulZsuJ3CTPCzjsAhXa7bImT6ZeeVXNSGui0aqZvTWgfYUte+li3XELXx25ZDNiODT6wJagvrkfBaYnrXZQNRvMp15OkIaYEXMQzIfl34fI7haXLi+ZRkr/JUXCyyoTnZMBp3oM3Q8V7sVEKqal02ePCwsWxcjofjmUN2dTPw39h7RxHb+7CZNMVkC1ddi+H4xqk9qj1UcPXTuPBFFLcHx3O8gj0qQWg/fZc6a8JR+OpJCHmuR+nsB+GCFjsNCtPC/FJT601D4KYkw3wMpHJ82UorJxhHcluc1uHbu1ivHgcGIcItRigZKQMaJDrvlTL0etUmI29L7dlHiOJ9EACWbzIB7+wj93IdTrLuZbESLdZPXFcBycfnhBLc3ffV1TQbVXLauj0wOQb6gsxluc4Ek8T/CI0+CN8A9bQ1A6/LChnAAAAAElFTkSuQmCC\" style=\"width:18px;height:18px;object-fit:contain;\" alt=\"\"><span>Customers</span></div>
+      <div class="nav-item inactive"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAZpJREFUeAGlUztuwkAQnTEElCocwUcgN4AGKG3lW5KO0MANAicIVaAjZUSQcAlp4AbhCD5CUiVA8GTWzlpmd0EQnoQ0+2bm4Tc7i2BA+abegIBaIibEztvgqb2LTwJVonRx76AFo40iomJAmDPx42FvluQsVdBKYR400ips4zVKKwqCmUoh0Hwrr3KV25pNa+xzXODjHFOBCz9Q5Rk1wgqC9mTY7YiwcllrJXlMk6f2Yvmq/s7ZpJ3Z5LVbhD1g6rUUAqJ/2xd6b1qoKiLxXBynmfvKLB7YXjVi0GNb7fFLz5dfpPZamKI74T8s5wI+u7HYyXLKYk0+5qIfVXlmU5EL6w292h5K8Hz6QsCYRPAmg65rThlQuublps0l1hoNS20UDNcoQGHVht3w2WIxMU9d8ACxWPR0lT33vM6HJOKXIgZNa2t0gJiALS5OXtKGICceDXu1Byj/nVk2NUFOOPBPEFHDIHgUdMuQeCGHAgGfZZyWwWKVdbOZZZ+/P7SOCD5fkM+RTwCfUSOcsUGbA5v+Lk+8EODnKHV+AUIStbhgtoCBAAAAAElFTkSuQmCC\" style=\"width:18px;height:18px;object-fit:contain;\" alt=\"\"><span>Pets</span></div>
+      <div class="nav-item inactive"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAIhJREFUeAHtlMEJgDAMRX+KAziC0+gEevUsntxAN/DmEE7gNt1AJzA2oOBBsLQ59kEhhfD5/JAAL6q6Y3n44avPQAkqm74lPmdX5wjDEpnREM4xQkQo2BnJwCjkt60LIYA7q1wvI58p+aDmKHuKyIz0HCWhJKSB7NqOuDMiWHePeADBIpzDaUwXEx4ltRmiRQUAAAAASUVORK5CYII=\" style=\"width:18px;height:18px;object-fit:contain;\" alt=\"\"><span>Calendar</span></div>
+      <div class="nav-item inactive"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAUCAYAAABiS3YzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAArxJREFUeAGNVD9TGlEQ3z0SxSp8BChsrCxMHWyELjgZ0U7ohGQm+Ak4unSBmYzQBTpHdCQd2HjpnQlprJLxPoIdIrm32X3vDg4kZ3bm3Z/3dvf99vd++xAiLLNXuuZXemHaHXSbqag4K2oREJJLZpPwjE2T5nKVRPbgaD6ATAJGhjJ4E1f+sweVZFTci+Bj9PLxGjzczOyV2xizOqS8t5xUzJ1tgveyE3mP1Z38h28I9GZE4wLH8Tyk5pBm944K7LzpRxbI8645tmIYQGeWlDqBD5J3CaTEJyGUZPZLlbmkhFjVCYhqSNAxZeIQY5Tqd0+KgfPgvFmXOV7v8S+jwwajNesKqkKFLn8nX64ygqSU2T9v2WGuet36vfBFhDkkTIBlOf3TLw4v7+r1Xl3KFpUc8is9WhkLuGMMy4YR21dnJ7Ug8U7+/SGSakPIFn0y++WPoMg2NOBwbbKyHft9e9NZ39hi6jCNnHx943Xq1+1NT5+oAgcWzPhsfWcfN5sv21zlJ56Oc+LG2p/VoqDXnJqyqeEj0SWpCW7CP4zQyi1s1RhctCoBHTPx8wmE3SyLEvD/9mouVh7msJSRhFL69TCJ+yf81JjnnkasyF+ngs4RJM3kS5csJds4U03KkG+HS2G5HD9NSDWmy5FvkRjr+dift/nQ73RSPqGfvv8wkJTIRUa/22prXVocyIMDt8OymyY2up02CqY5eHVl/EP6XOTi78po0cWY2u2fttxwEq1bD7+CvljQIW4Uv1L2503ZHzWn70o5tOASlhII9cFZU5fIVH3mzQtgWnPBDYvcfW1dvjyuLpoC3+HBPGKbFOzqdtVnADP5EIjMEozEESqmPtKNfkKx6S3F0Ivxh/h9oDW2nt9+yRAgo93YarF/WncFCNNhS9w86gjjcu+COzVs+m6NsOibn3CZTofwjP0FRytED+bMamQAAAAASUVORK5CYII=\" style=\"width:18px;height:18px;object-fit:contain;\" alt=\"\"><span>Settings</span></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-item">${IC.settF} Settings</div>
+      <div class="sidebar-footer-item">${IC.supp} Support</div>
+    </div>
+  </div>`;
+
+  // Topnav
+  const tH=`<div class="topnav">
+    <div class="search-wrap"><div class="search-icon">${IC.search}</div><input placeholder="Search pets, customers, or bookings..."/></div>
+    <div class="topnav-right">
+      <button class="nav-icon-btn">${IC.notif}</button>
+      <button class="nav-icon-btn">${IC.help}</button>
+      <div class="user-pill"><div class="uavatar">AC</div><span>Alex Caretaker</span></div>
+    </div>
+  </div>`;
+
+  // Stepper
+  const stH=`<div class="stepper">
+    ${["Customer","Booking Type","Service"].map((lbl,i)=>{
+      const n=i+1,a=step===n,d=step>n;
+      return`${i>0?'<div class="sdivider"></div>':''}<div class="step${a?' active':''}">
+        <div class="step-num ${a?'a':'i'}">${d?IC.chkGn:n}</div>
+        <div class="step-lbl ${a?'a':d?'d':'i'}">${lbl}</div>
+      </div>`;
+    }).join("")}
+  </div>`;
+
+  // Customer section
+  let cxSec="";
+  if(!S.cx){
+    const q=S.query.toLowerCase().trim();
+    const res=q.length>1?CX.filter(c=>
+      c.name.toLowerCase().includes(q)||c.phone.includes(q)||
+      c.email.toLowerCase().includes(q)||c.pets.some(p=>p.name.toLowerCase().includes(q))
+    ):[];
+    if(!S.showNew){
+      cxSec=`<div>
+        <div class="sec-lbl">Customer</div><div class="sec-sub">Select or create a customer</div>
+        <div class="card">
+          <div class="search-row">
+            <span class="find-lbl">Find a Customer</span>
+            <button class="add-new-btn" onclick="showNewForm()">Add New Customer</button>
+          </div>
+          <div class="sf">
+            <div class="si">${IC.searchD}</div>
+            <input id="csq" placeholder="Type name, phone, or pet name..."
+              value="${S.query.replace(/"/g,'&quot;')}"
+              oninput="setQ(this.value)" autocomplete="off"/>
+          </div>
+          ${res.length>0?`<div class="results">${res.map(c=>`
+            <button class="rrow" onclick="pickCx(${c.id})">
+              <div class="rav">${inits(c.name)}</div>
+              <div><div class="rname">${c.name}</div><div class="rphone">${c.phone}</div></div>
+              <div class="ptags">${c.pets.map(p=>`<span class="ptag">${p.name}</span>`).join("")}</div>
+            </button>`).join("")}</div>`:""}
+          ${q.length>1&&res.length===0?`<div class="nr">No customers found. <button onclick="showNewForm()">Create new?</button></div>`:""}
+        </div>
+      </div>`;
+    } else {
+      cxSec=`<div>
+        <div class="sec-lbl">Customer</div><div class="sec-sub">Select or create a customer</div>
+        <div class="card">
+          <button class="fbk" onclick="hideNewForm()">← Back to search</button>
+          <div style="font-weight:600;font-size:14px;color:#001d34;margin-bottom:14px">New Customer</div>
+          <div class="ncgrid">
+            <div><label class="fclbl">Full Name *</label><input class="fci" id="nc-name" placeholder="e.g. Priya Sharma" autocomplete="off"/></div>
+            <div><label class="fclbl">Phone *</label><input class="fci" id="nc-phone" placeholder="e.g. 512-891-5540" autocomplete="off"/></div>
+            <div class="fsp"><label class="fclbl">Email</label><input class="fci" id="nc-email" placeholder="e.g. name@email.com" autocomplete="off"/></div>
+            <div><label class="fclbl">Pet Name *</label><input class="fci" id="nc-pn" placeholder="e.g. Bentley" autocomplete="off"/></div>
+            <div><label class="fclbl">Breed</label><input class="fci" id="nc-pb" placeholder="e.g. French Bulldog" autocomplete="off"/></div>
+          </div>
+          <div style="margin-top:10px">
+            <div class="fclbl">Pet Size</div>
+            <div class="szrow" id="sz-row">
+              ${["Small","Medium","Large"].map(sz=>`<button class="szbtn ${NC.sz===sz?'sel':'unsel'}" onclick="setSz('${sz}')">${sz}</button>`).join("")}
+            </div>
+          </div>
+          <div id="nc-err" class="errmsg" style="display:none"></div>
+          <button class="fsub" onclick="createCx()">Create Customer & Continue →</button>
+        </div>
+      </div>`;
+    }
+  } else {
+    const mp=S.cx.pets.length>1;
+    const chips=mp?`<div>
+      <div class="pt-lbl">Select pet for this booking</div>
+      <div class="pet-select-row">${S.cx.pets.map(p=>{
+        const sel=S.selectedPetId===p.id;
+        return`<button class="pet-chip ${sel?'sel':''}" onclick="selPet(${p.id})">
+          <div class="pet-chip-dot"></div>${p.name}
+          <span style="font-weight:400;font-size:11px;color:${sel?'#b7141d':'#94a3b8'}"> · ${p.breed}</span>
+        </button>`;
+      }).join("")}</div></div>`:"";
+    cxSec=`<div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px">
+        <div><div class="sec-lbl">Customer</div><div class="sec-sub">Select or create a customer</div></div>
+        <button class="change-btn" onclick="clearCx()">Change Customer</button>
+      </div>
+      <div class="cust-card">
+        <div class="cav">${inits(S.cx.name)}</div>
+        <div style="flex:1">
+          <div class="cname">${S.cx.name}</div>
+          <div class="ccontact">
+            <div class="cci">${IC.eml} ${S.cx.email}</div>
+            <div class="cci">${IC.phn} ${S.cx.phone}</div>
+          </div>
+          ${chips}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Booking type — show "first" type label but cards can have mixed types
+  const btSec=`<div style="${!S.cx?'opacity:0.38;pointer-events:none':''}">
+    <div class="sec-lbl">Booking Type</div><div class="sec-sub">Defines the type of visit</div>
+    <div class="bt-grid">
+      ${[{id:"Grooming",ic:IC.grm},{id:"Daycare",ic:IC.day},{id:"Boarding",ic:IC.brd}].map(t=>{
+        const a=S.bt===t.id;
+        return`<button class="btc${a?' active':''}" onclick="setBT('${t.id}')">
+          ${a?`<div class="bt-check">${IC.chkGn}</div>`:""}
+          <div class="bt-icon ${a?'a':'i'}" style="color:${a?'#b7141d':'#475569'}">${t.ic}</div>
+          <div class="bt-name">${t.id}</div>
+        </button>`;
+      }).join("")}
+    </div>
+  </div>`;
+
+  // Service section
+  let svcSec="";
+  if(!S.cx||!S.bt){
+    svcSec=`<div>
+      <div class="sec-lbl">Service</div><div class="sec-sub">Choose services for this booking</div>
+      <div class="svc-locked">${IC.lock}<div class="svc-locked-text">Services will be available once a<br/>customer is chosen.</div></div>
+    </div>`;
+  } else {
+    const cardsH=S.cards.map((card,ci)=>{
+      const pet=S.cx.pets.find(p=>p.id===card.petId)||S.cx.pets[0];
+      const cardSvcs=SVCS[card.btType];
+      const cardAdns=ALL_ADDONS[card.btType];
+      const mainAdns=cardAdns.slice(0,2);
+      const extraAdns=cardAdns.slice(2);
+
+      const allAdnsHTML=cardAdns.map(a=>{
+        const chk=!!card.addons.find(x=>x.id===a.id);
+        return`<button class="adchip" onclick="togAddon(${ci},'${a.id}')">
+          <div class="cbx ${chk?'chk':'unchk'}">${chk?IC.chkW:""}</div>
+          ${a.label} (+$${a.price})
+        </button>`;
+      }).join("");
+
+      const mainAdnsHTML=mainAdns.map(a=>{
+        const chk=!!card.addons.find(x=>x.id===a.id);
+        return`<button class="adchip" onclick="togAddon(${ci},'${a.id}')">
+          <div class="cbx ${chk?'chk':'unchk'}">${chk?IC.chkW:""}</div>
+          ${a.label} (+$${a.price})
+        </button>`;
+      }).join("");
+
+      // Type badge for mixed bookings
+      const typeBadge=S.cards.length>1?`<span style="display:inline-flex;align-items:center;gap:4px;background:${card.btType==='Grooming'?'rgba(183,20,29,0.08)':card.btType==='Daycare'?'rgba(234,179,8,0.1)':'rgba(79,110,247,0.1)'};color:${card.btType==='Grooming'?'#b7141d':card.btType==='Daycare'?'#92400e':'#4f6ef7'};border-radius:99px;padding:2px 10px;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">${card.btType==='Grooming'?IC.grm.replace('currentColor','currentColor'):card.btType==='Daycare'?IC.day.replace('currentColor','currentColor'):IC.brd.replace('currentColor','currentColor')} ${card.btType}</span>`:"";
+
+      return`<div class="pfc">
+        ${S.cards.length>1?`<button class="pfc-close" onclick="removeCard(${ci})" title="Remove">${IC.close}</button>`:""}
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${typeBadge||pet?.alert?'10px':'0'}">
+          <div>${typeBadge}</div>
+          ${pet?.alert?`<div style="background:#fee2e2;border-radius:99px;padding:2px 9px;font-size:9px;font-weight:700;color:#dc2626;letter-spacing:1px;text-transform:uppercase;">${pet.alert}</div>`:""}
+        </div>
+        <div class="pfc-head" style="margin-top:${pet?.alert?'20px':'0'}">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div class="pp">${pet?.name?.[0]||"?"}</div>
+            <div style="margin-top:3px">
+              <div class="pname">${pet?.name||""}</div>
+              <div class="pbreed">${pet?.breed||""}</div>
+              <div class="page">${fmtAge(pet?.age||"")}</div>
+            </div>
+          </div>
+          ${pet?.vax?`<div class="vax">${IC.vax}<div><div class="vax-t">Vaccinations</div><div class="vax-v">Up to date</div></div></div>`:""}
+        </div>
+        <div class="fl">
+          <div class="flbl">${SVC_LBL[card.btType]||"Service"}</div>
+          <div class="fsw">
+            <select class="fsel" onchange="updCard(${ci},'svcId',this.value)">
+              ${cardSvcs.map(x=>`<option value="${x.id}"${x.id===card.svcId?" selected":""}>${x.label}</option>`).join("")}
+            </select>
+            <div class="fsw-ic">${IC.chev}</div>
+          </div>
+        </div>
+        <div class="twofl">
+          <div class="fl" style="margin-bottom:0"><div class="flbl">Service Date</div>
+            <div class="fwi"><div class="fi">${IC.cal}</div>
+              <input class="finp" style="padding-left:32px" value="${card.date}" onchange="updCard(${ci},'date',this.value)"/>
+            </div>
+          </div>
+          <div class="fl" style="margin-bottom:0"><div class="flbl">Time</div>
+            <div class="fwi"><div class="fi">${IC.clk}</div>
+              <input class="finp" style="padding-left:32px" value="${card.time}" onchange="updCard(${ci},'time',this.value)"/>
+            </div>
+          </div>
+        </div>
+        <div class="fl">
+          <div class="flbl">Preferred Groomer</div>
+          <div class="fsw">
+            <select class="fsel" onchange="updCard(${ci},'groomer',this.value)">
+              ${GROOMERS.map(g=>`<option value="${g.id}"${g.id===card.groomer?" selected":""}>${g.name}  ${g.available?"(Available)":"(Unavailable)"}</option>`).join("")}
+            </select>
+            <div class="fsw-ic">${IC.chev}</div>
+          </div>
+        </div>
+        <div class="fl">
+          <div class="flbl">Add-on Services</div>
+          <div class="adw">${card.showAllAddons?allAdnsHTML:mainAdnsHTML}</div>
+          <button class="view-all" onclick="toggleAllAddons(${ci})">
+            ${card.showAllAddons?`${IC.chevUp} Show less`:`${IC.chev} View all add-ons (${cardAdns.length})`}
+          </button>
+
+        </div>
+        <div class="fl instr">
+          <div class="flbl">Specific Instructions</div>
+          <textarea placeholder="e.g., Short cut on belly, leave tail fluffy..."
+            onchange="updCard(${ci},'instr',this.value)">${card.instr}</textarea>
+        </div>
+      </div>`;
+    }).join("");
+
+    svcSec=`<div>
+      <div class="svc-hdr">
+        <div><div class="sec-lbl">Service</div><div class="sec-sub">Choose services for this booking</div></div>
+        <button class="add-pet-btn" onclick="openModal()">
+          ${IC.plusR} Add Another Pet or Service
+        </button>
+      </div>
+      ${cardsH}
+    </div>`;
+  }
+
+  // Summary
+  let sumContent="";
+  if(!S.cx){
+    sumContent=`<div class="empty-ic">${IC.bkgs}</div>
+      <div class="empty-t">No Customer Selected</div>
+      <div class="empty-tx">Start by finding a customer. We'll automatically pull up their preferred services, pet medical alerts, and booking history.</div>`;
+  } else {
+    const lineItems=S.cards.map(card=>{
+      const svcs=SVCS[card.btType];
+      const svc=svcs.find(x=>x.id===card.svcId)||svcs[0];
+      const pet=S.cx.pets.find(p=>p.id===card.petId);
+      return{pet,svc,addons:card.addons,sub:(svc?.price||0)+card.addons.reduce((t,a)=>t+a.price,0),bt:card.btType};
+    });
+    const grand=lineItems.reduce((t,x)=>t+x.sub,0);
+    const fmt=S.cards[0]?.date?S.cards[0].date.replace(/(\d{2})\/(\d{2})\/(\d{4})/,(_,m,d,y)=>{
+      const mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      return`${mo[parseInt(m)-1]} ${parseInt(d)}, ${y}`;
+    }):"";
+    const ready=S.cx&&S.bt&&S.cards.length>0;
+    sumContent=`
+      <div class="srow"><div class="sic">${IC.own}</div>
+        <div><div class="slbl">Owner &amp; Pet(s)</div>
+          <div class="sval">${S.cx.name}</div>
+          <div class="ssub">${S.cards.map(c=>S.cx.pets.find(x=>x.id===c.petId)?.name||"?").join(", ")||S.cx.pets.map(p=>p.name).join(", ")}</div>
+        </div>
+      </div>
+      ${fmt?`<div class="srow"><div class="sic">${IC.dte}</div>
+        <div><div class="slbl">Date &amp; Time</div>
+          <div class="sval">${fmt}</div>
+          <div class="ssub">Arrival: ${S.cards[0]?.time||""}</div>
+        </div>
+      </div>`:""}
+      ${lineItems.length>0?`<div class="litems">
+        ${lineItems.map(x=>`
+          <div class="li-pet-hdr">${x.pet?.name||""} — ${x.bt}</div>
+          <div class="li"><span class="ln">${x.svc.label}</span><span class="lp">$${x.svc.price}.00</span></div>
+          ${x.addons.map(a=>`<div class="li"><span class="ln"> ↳ ${a.label}</span><span class="lp">$${a.price}.00</span></div>`).join("")}
+        `).join("")}
+        <div class="trow"><span class="tl">Total</span><span class="tp">$${grand}.00</span></div>
+      </div>`:""}
+      <button class="cfm-btn ${ready?'ok':'no'}" onclick="${ready?'doConfirm()':''}">
+        CONFIRM BOOKING ${ready?IC.arr:""}
+      </button>
+      <button class="draft-btn">Save as Draft</button>`;
+  }
+
+  el.innerHTML=`<div class="app">
+    ${sH}<div class="main">${tH}
+      <div class="page-wrap"><div class="content">
+        <div class="breadcrumb"><span>Bookings</span>
+          <svg width="5" height="8" viewBox="0 0 5 8" fill="none"><path d="M1 1l3 3-3 3" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span class="cur">New Appointment</span>
+        </div>
+        <div class="page-title">Schedule Service</div>
+        <div class="page-sub">${S.cx?"Create a new reservation for a customer. Choose a customer to get started.":"Create a new reservation for a customer. Choose your service type to get started."}</div>
+        ${stH}
+        <div class="two-col">
+          <div class="left-col">${cxSec}${btSec}${svcSec}</div>
+          <div class="right-col"><div class="sum-card"><div class="sum-title">Booking Summary</div>${sumContent}</div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>`;
+
+  // Restore new customer form values
+  if(S.showNew){
+    const fields={name:"nc-name",email:"nc-email",phone:"nc-phone",pn:"nc-pn",pb:"nc-pb"};
+    Object.entries(fields).forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.value=NC[k];});
+  }
+  renderModal();
+}
+
+// ─── Modal: Add Another Pet or Service ────────────────────────────────────────
+function renderModal(){
+  const root=document.getElementById("modal-root");if(!root)return;
+  if(!S.showModal){root.innerHTML="";return;}
+
+  const pets=S.cx?.pets||[];
+  const usedIds=S.cards.map(c=>c.petId);
+  const availPets=pets.filter(p=>!usedIds.includes(p.id));
+
+  // Options: each available pet × each booking type, plus same pets with different booking types
+  const petOpts=availPets.map(p=>`
+    <button class="modal-btn" onclick="addCardPetBT(${p.id},'${S.bt}')">
+      <div class="modal-btn-icon" style="color:#b7141d">${IC.dog}</div>
+      <div>
+        <div class="modal-btn-label">${p.name} — ${S.bt}</div>
+        <div class="modal-btn-sub">${p.breed} · ${fmtAge(p.age)}</div>
+      </div>
+    </button>`).join("");
+
+  // Mixed booking type options for pets already in cards
+  const mixedOpts=S.cards.flatMap(card=>{
+    const pet=pets.find(p=>p.id===card.petId);
+    if(!pet)return[];
+    return BT_ALL.filter(bt=>bt!==card.btType).map(bt=>`
+      <button class="modal-btn" onclick="addCardPetBT(${pet.id},'${bt}')">
+        <div class="modal-btn-icon" style="color:${bt==='Daycare'?'#92400e':'#4f6ef7'}">${bt==='Grooming'?IC.grm:bt==='Daycare'?IC.day:IC.brd}</div>
+        <div>
+          <div class="modal-btn-label">${pet.name} — ${bt}</div>
+          <div class="modal-btn-sub">Add ${bt} to this visit</div>
+        </div>
+      </button>`);
+  }).join("");
+
+  const hasOpts=(petOpts||mixedOpts);
+
+  root.innerHTML=`<div class="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-title">Add Another Pet or Service</div>
+      <div class="modal-sub">Choose what to add to this booking</div>
+      <div class="modal-opt">
+        ${petOpts}
+        ${mixedOpts}
+        ${!hasOpts?`<div style="text-align:center;padding:16px;font-size:13px;color:#94a3b8">All pets and service combinations have been added.</div>`:""}
+      </div>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>`;
+}
+
+// ─── Handlers ─────────────────────────────────────────────────────────────────
+function setQ(v){S.query=v;render();const el=document.getElementById("csq");if(el){el.focus();el.setSelectionRange(v.length,v.length);}}
+function showNewForm(){S.showNew=true;S.err="";render();document.getElementById("nc-name")?.focus();}
+function hideNewForm(){S.showNew=false;S.err="";NC={name:"",email:"",phone:"",pn:"",pb:"",sz:"Small"};render();}
+function setSz(v){NC.sz=v;document.querySelectorAll(".szbtn").forEach(b=>{b.className="szbtn "+(b.textContent.trim()===v?"sel":"unsel");});}
+
+function pickCx(id){
+  const c=CX.find(x=>x.id===id);if(!c)return;
+  S.cx=c;S.query="";S.selectedPetId=c.pets[0].id;
+  S.cards=[initCard(c.pets[0].id,S.bt)];render();
+}
+function selPet(pid){
+  S.selectedPetId=pid;
+  if(S.cards.length===1)S.cards[0].petId=pid;
+  render();
+}
+function clearCx(){S.cx=null;S.cards=[];S.selectedPetId=null;S.query="";render();}
+function setBT(t){
+  S.bt=t;
+  // Only reset the first card's type; leave others as-is if mixed
+  if(S.cards.length>0){
+    S.cards[0].btType=t;
+    S.cards[0].svcId=SVCS[t][0].id;
+    S.cards[0].addons=[ALL_ADDONS[t][0]];
+  }
+  render();
+}
+function updCard(i,k,v){if(S.cards[i])S.cards[i][k]=v;}
+function togAddon(ci,aid){
+  if(!S.cards[ci])return;
+  const a=ALL_ADDONS[S.cards[ci].btType].find(x=>x.id===aid);if(!a)return;
+  const has=S.cards[ci].addons.find(x=>x.id===aid);
+  S.cards[ci].addons=has?S.cards[ci].addons.filter(x=>x.id!==aid):[...S.cards[ci].addons,a];
+  render();
+}
+function toggleAllAddons(ci){
+  if(!S.cards[ci])return;
+  S.cards[ci].showAllAddons=!S.cards[ci].showAllAddons;
+  render();
+}
+function openModal(){S.showModal=true;renderModal();}
+function closeModal(){S.showModal=false;renderModal();}
+function addCardPetBT(petId,bt){
+  S.cards.push(initCard(petId,bt));
+  S.showModal=false;
+  render();
+}
+function removeCard(i){S.cards.splice(i,1);render();}
+
+function createCx(){
+  NC.name=document.getElementById("nc-name")?.value.trim()||"";
+  NC.email=document.getElementById("nc-email")?.value.trim()||"";
+  NC.phone=document.getElementById("nc-phone")?.value.trim()||"";
+  NC.pn=document.getElementById("nc-pn")?.value.trim()||"";
+  NC.pb=document.getElementById("nc-pb")?.value.trim()||"";
+  const errEl=document.getElementById("nc-err");
+  function showErr(msg){if(errEl){errEl.textContent="⚠ "+msg;errEl.style.display="block";}}
+  if(!NC.name){showErr("Customer name is required.");return;}
+  if(!NC.phone){showErr("Phone is required.");return;}
+  if(!NC.pn){showErr("Pet name is required.");return;}
+  const c={id:Date.now(),name:NC.name,email:NC.email||"—",phone:NC.phone,
+    pets:[{id:Date.now()+1,name:NC.pn,breed:NC.pb||"Unknown",age:"1y",size:NC.sz,alert:null,vax:true}]};
+  S.cx=c;S.showNew=false;S.err="";S.selectedPetId=c.pets[0].id;
+  S.cards=[initCard(c.pets[0].id,S.bt)];
+  NC={name:"",email:"",phone:"",pn:"",pb:"",sz:"Small"};
+  render();
+}
+function doConfirm(){S.confirmed=true;render();}
+function resetApp(){
+  S={cx:null,bt:"Grooming",selectedPetId:null,cards:[],confirmed:false,query:"",showNew:false,err:"",showModal:false};
+  NC={name:"",email:"",phone:"",pn:"",pb:"",sz:"Small"};
+  render();
+}
+render();
+</script>
+</body>
+</html>
