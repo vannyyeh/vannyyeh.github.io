@@ -303,7 +303,8 @@
 
     <div class="tradeoff">
       <div class="tradeoff-head"><span class="side-a">Customer-first</span><span class="vs">VS</span><span class="side-b">Service-first</span></div>
-      <p class="prose">Booking can start from the customer — find who's coming in — or the service — find what's available today. I chose customer-first because Gingr's most loyal users are repeat customers with known pets, and the CRM's own data model is built around the customer record.</p>
+      <p class="prose">Booking can start from the customer or from the service. I chose customer-first because Gingr's most loyal users are repeat customers with known pets, and the CRM's data model is built around the customer record.</p>
+      <div class="tradeoff-visual"><img loading="lazy" src="assets/Gingr-Asset/tradeoff-2.png" alt="Booking flow step order: Booking Type first vs Customer first"></div>
       <div class="tradeoff-why">
         <div class="col-a"><div class="col-label">What it gains</div><p>Faster repeat bookings, pet history pulled in automatically, fewer duplicate records.</p></div>
         <div class="col-b"><div class="col-label">What it costs</div><p>Front-desk-heavy businesses that think in open service slots first take one extra step.</p></div>
@@ -312,10 +313,11 @@
 
     <div class="tradeoff">
       <div class="tradeoff-head"><span class="side-a">Clarity &amp; structure</span><span class="vs">VS</span><span class="side-b">Speed &amp; flexibility</span></div>
-      <p class="prose">Grouping booking type, then service, then add-ons keeps the system's structure legible one step at a time. The old single-page form was the opposite: everything visible at once, dense but fast for someone who already knows exactly what they want.</p>
+      <p class="prose">Grouping booking type, then service, then add-ons keeps the system's structure legible one step at a time. That gives staff a clearer mental model and a cleaner structure to price, schedule, and validate against, at the cost of a slightly longer flow than one dense screen, which could feel faster to someone who already knows exactly what they want. I prioritized clarity first, since this is a workflow-heavy CRM that benefits from stronger guidance, and would solve speed through interaction patterns like better defaults and quick actions rather than collapsing the data model.</p>
+      <div class="tradeoff-visual"><img loading="lazy" src="assets/Gingr-Asset/tradeoff-1.png" alt="Guided single-service step vs a denser all-fields booking-type step"></div>
       <div class="tradeoff-why">
         <div class="col-a"><div class="col-label">What it gains</div><p>New or infrequent staff can complete a booking correctly without memorizing the structure.</p></div>
-        <div class="col-b"><div class="col-label">What it costs</div><p>Power users lose the one-screen view and take a few more clicks to reach the same outcome.</p></div>
+        <div class="col-b"><div class="col-label">What it costs</div><p>A longer, more structured flow. Experienced users lose the single dense screen that felt faster for mixed bookings.</p></div>
       </div>
     </div>
   </div>
@@ -324,13 +326,13 @@
 <section id="build" style="background:var(--bg-band);">
   <div class="wrap">
     <div class="sec-index"><span class="sec-index-label">AI-Assisted Build</span><span class="sec-index-num">[viii]</span></div>
-    <p class="sec-dek" style="margin-bottom:32px;">The differentiator of this project isn't just the design — it's that the design didn't stop at Figma.</p>
+    <p class="sec-dek" style="margin-bottom:32px;">The differentiator of this project isn't just the design. It's that the design didn't stop at Figma.</p>
 
     <div class="code-panel">
       <div>
         <h4>Designed in Figma. Rebuilt in code with Cursor.</h4>
-        <p>Every screen in this case study — old-state references aside — was taken from a Figma frame to real, running HTML/CSS using Cursor, then iterated directly against the four design principles above. That's the difference between a designer who hands off a click-through mockup and one who hands off something that opens in a browser, with real markup an engineer can read, adjust, and build from directly.</p>
-        <p style="margin-top:14px;">To be direct about scope: this was a solo project without an engineering team to actually receive the handoff — so "reads like a real build" is a claim about how it's constructed, not a tested claim about handoff smoothness in practice. A recorded walkthrough of the live prototype is next.</p>
+        <p>Every screen in this case study, old-state references aside, was taken from a Figma frame to real, running HTML/CSS/JS using Cursor, then iterated directly against the four design principles above. That's the difference between a designer who hands off a click-through mockup and one who hands off something that opens in a browser, with real markup an engineer can read, adjust, and build from directly.</p>
+        <p style="margin-top:14px;">To be direct about scope: this was a solo project without an engineering team to actually receive the handoff, so "reads like a real build" is a claim about how it's constructed, not a tested claim about handoff smoothness in practice. A recorded walkthrough of the live prototype could be added next.</p>
         <div class="code-links">
           <a class="pill-link placeholder" href="#">Add repo link</a>
           <a class="pill-link placeholder" href="#">Add live prototype link</a>
@@ -359,17 +361,18 @@
       <div class="learn-col">
         <h4>Key Learnings</h4>
         <ul>
-          <li><span class="dot"></span>AI tooling shifts the designer's role from screen-maker to decision navigator — the thinking doesn't get faster, the execution does.</li>
-          <li><span class="dot"></span>Speed doesn't remove the need for design principles — if anything, it makes them the fastest way to check a decision without a live user to ask.</li>
-          <li><span class="dot"></span>Building in real code surfaces integration questions Figma mockups quietly hide.</li>
+          <li><span class="dot"></span>AI tooling shifts the designer's role from screen-maker to decision navigator. The thinking doesn't get faster, the execution does.</li>
+          <li><span class="dot"></span>Speed doesn't remove the need for design principles. If anything, it makes them the fastest way to check a decision without a live user to ask.</li>
+          <li><span class="dot"></span>A working prototype isn't just faster to test. It's concrete enough to bring engineers into the conversation early, instead of after the design is already called "final."</li>
         </ul>
       </div>
       <div class="learn-col">
         <h4>Future Improvements</h4>
         <ul>
-          <li><span class="dot"></span>Advanced scenarios — overlapping schedules, waitlists, and exception handling.</li>
-          <li><span class="dot"></span>Sharper system feedback — clearer communication of conflicts, constraints, and recovery paths.</li>
-          <li><span class="dot"></span>Usability testing with real front-desk staff — every decision here is grounded in research and principles, not yet validated with the people who'd use it daily.</li>
+          <li><span class="dot"></span>Advanced scenarios: overlapping schedules, waitlists, and exception handling.</li>
+          <li><span class="dot"></span>Sharper system feedback: clearer communication of conflicts, constraints, and recovery paths.</li>
+          <li><span class="dot"></span>AI-predicted attention heatmaps for fast, directional feedback before investing in full usability testing.</li>
+          <li><span class="dot"></span>Usability testing with real front-desk staff. Every decision here is grounded in research and principles, not yet validated with the people who'd use it daily.</li>
         </ul>
       </div>
     </div>
