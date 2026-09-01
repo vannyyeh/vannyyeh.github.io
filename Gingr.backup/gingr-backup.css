@@ -1,4 +1,4 @@
-/* Gingr case study — EXPERIMENTAL layout. Scoped so it does not collide with the site chrome. */
+/* Gingr case study — scoped so it does not collide with the site chrome */
 
 html {
   scroll-behavior: smooth;
@@ -23,7 +23,6 @@ body.gingr-page {
   --slate: #3E5568;
   --radius-s: 8px;
   --radius-m: 14px;
-  --radius-l: 24px;
   --maxw: 1120px;
   --shadow-sm: 0 1px 2px rgba(21, 23, 27, 0.06);
   --shadow-md: 0 16px 40px -18px rgba(21, 23, 27, 0.22);
@@ -101,13 +100,15 @@ body.gingr-page {
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--ink);
+  padding-bottom: 6px;
 }
 
-.gingr-page .gingr-case h1 {
+.gingr-page .gingr-case h1{
   margin: 0;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--ink);
+  padding-bottom: 15px;
 }
 
 .gingr-page .gingr-case p {
@@ -142,7 +143,7 @@ body.gingr-page {
   transition: width 0.1s linear;
 }
 
-/* ==================== Hero ==================== */
+/* Hero */
 .gingr-hero {
   background: var(--bg-band);
   padding: 64px 0 76px;
@@ -168,33 +169,31 @@ body.gingr-page {
 
 .gingr-page .hero-grid {
   display: grid;
-  grid-template-columns: 60fr 40fr;
-  gap: 40px;
+  grid-template-columns:45fr 40fr;
+  gap: 5px;
   align-items: end;
-  margin-top: 24px;
+  margin-top: 5px;
 }
 
 .gingr-hero h1 {
   font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(2.4rem, 4.4vw, 3.6rem);
-  line-height: 1.1;
+  font-size: clamp(2.365rem, 4.4vw, 3.355rem);
+  line-height: 1.14;
 }
 
 .gingr-hero h1 .accent {
-  color: var(--coral);
+  color: #EE4542;
   font-style: italic;
   margin-right: 0.2em;
 }
 
 .gingr-hero h1 .hero-title-alt {
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
 }
 
 .gingr-page .hero-sub {
-  margin-top: 22px;
-  font-size: 17px;
+  margin-top: 20px;
+  font-size: 16px;
   color: var(--ink-soft);
   max-width: 480px;
   line-height: 1.65;
@@ -227,6 +226,7 @@ body.gingr-page {
   }
 }
 
+
 .gingr-page .hero-grid .hero-copy {
   position: relative;
   z-index: 2;
@@ -237,9 +237,10 @@ body.gingr-page {
   z-index: 1;
 }
 
-.gingr-page .hero-grid .device-frame img {
-  border-radius: var(--radius-l);
-  box-shadow: var(--shadow-md);
+.gingr-page .hero-grid .device-frame img {:
+  transform: scale(1.12);
+  transform-origin: bottom right;
+  padding-left: 25px;
 }
 
 @media (max-width: 860px) {
@@ -248,59 +249,42 @@ body.gingr-page {
     gap: 32px;
   }
 
+  .gingr-page .hero-grid .device-frame img {
+    transform: none;
+  }
+
   .gingr-hero {
     padding: 48px 0 56px;
   }
 }
 
-/* ==================== Eyebrow capsule (new signature) ==================== */
-.gingr-page .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--ink);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  padding: 8px 16px;
-  border-radius: 100px;
-  white-space: nowrap;
-}
-
-.gingr-page .eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--coral);
-  flex: none;
-}
-
-/* ==================== Sections ==================== */
+/* Sections */
 .gingr-page .gingr-case > section {
-  padding: 80px 0;
+  padding: 96px 0;
   scroll-margin-top: 80px;
 }
 
 @media (max-width: 760px) {
   .gingr-page .gingr-case > section {
-    padding: 64px 0;
+    padding: 60px 0;
   }
 }
 
 .gingr-page .sec-index {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
   padding-bottom: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
-.gingr-page .sec-index .eyebrow {
-  margin-bottom: 0;
+.gingr-page .sec-index-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 .gingr-page .sec-index-num {
@@ -309,183 +293,20 @@ body.gingr-page {
   font-weight: 500;
 }
 
-/* Section title line — big serif h2 + optional dek */
-.gingr-page .s-head {
-  margin-bottom: 25px;
+.gingr-page .sec-title {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.22;
+  margin-bottom: 18px;
 }
 
-.gingr-page .s-head h2 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 1.16;
-}
-
-.gingr-page .s-head .s-dek {
-  margin-top: 16px;
-  font-size: 16.5px;
+.gingr-page .sec-dek {
+  font-size: 16px;
   color: var(--ink-soft);
   line-height: 1.7;
+  margin-bottom: 8px;
 }
 
-/* Smaller in-section title line, used for sub-moments inside a single roman-numeral section */
-.gingr-page .m-head {
-  margin-bottom: 24px;
-}
-
-.gingr-page .m-head .eyebrow {
-  background: transparent;
-  color: var(--ink-faint);
-  padding: 0;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-}
-
-.gingr-page .m-head h3 {
-  font-weight: 500;
-  font-size: clamp(1.3rem, 2vw, 1.6rem);
-  line-height: 1.2;
-}
-
-.gingr-page .m-head .s-dek {
-  margin-top: 12px;
-  font-size: 15.5px;
-  color: var(--ink-soft);
-  line-height: 1.7;
-  max-width: 640px;
-}
-
-/* ==================== Prototype demo video ==================== */
-.gingr-page .demo-card {
-  position: relative;
-  background: #0B0D12;
-  border-radius: var(--radius-l);
-  overflow: hidden;
-  aspect-ratio: 1130 / 768;
-  max-width: 75%;
-  margin: 0 auto;
-}
-
-.gingr-page .demo-card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 45%;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-
-.gingr-page .demo-video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  background: #0B0D12;
-}
-
-.gingr-page .demo-badge {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  z-index: 2;
-  background: var(--gold);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 8px 18px;
-  border-radius: 100px;
-  transition: opacity 0.2s ease;
-}
-
-.gingr-page .demo-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  background: #fff;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  z-index: 2;
-}
-
-.gingr-page .demo-play:hover {
-  transform: translate(-50%, -50%) scale(1.06);
-}
-
-.gingr-page .demo-info {
-  position: absolute;
-  left: 28px;
-  right: 100px;
-  bottom: 26px;
-  z-index: 2;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-.gingr-page .demo-info h4 {
-  color: #fff;
-  font-size: 19px;
-  margin-bottom: 6px;
-}
-
-.gingr-page .demo-info p {
-  color: #C6CCD6;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.gingr-page .demo-duration {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: opacity 0.2s ease;
-}
-
-.gingr-page .demo-card.is-playing .demo-badge,
-.gingr-page .demo-card.is-playing .demo-play,
-.gingr-page .demo-card.is-playing .demo-info,
-.gingr-page .demo-card.is-playing .demo-duration {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Silent scroll-triggered loop: only the redundant play button hides, so the
-   badge/title/duration still read as a label over the ambient preview. */
-.gingr-page .demo-card.is-ambient .demo-play {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@media (max-width: 640px) {
-  .gingr-page .demo-info {
-    right: 24px;
-  }
-}
-
-/* ==================== Overview ==================== */
+/* Overview */
 .gingr-page .overview-header {
   margin-bottom: 44px;
 }
@@ -542,7 +363,10 @@ body.gingr-page {
 .gingr-page .overview-grid .device-frame img {
   transform: scale(1.2);
   transform-origin: center;
-  border-radius: var(--radius-m);
+}
+
+.device-frame{
+  margin-top: 40px;
 }
 
 @media (max-width: 860px) {
@@ -616,13 +440,11 @@ body.gingr-page {
   }
 }
 
-/* ==================== Prose ==================== */
+/* Prose */
 .gingr-page .prose {
   font-size: 16px;
   color: #33363c;
   line-height: 1.75;
-  padding-bottom: 20px;
-  font-weight: 300;
 }
 
 .gingr-page .prose + .prose {
@@ -643,7 +465,7 @@ body.gingr-page {
 }
 
 .gingr-page .subhead-block h4 {
-  font-size: 20px;
+  font-size: 16.5px;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -669,7 +491,7 @@ body.gingr-page {
 
 .gingr-page .mini-item .mi-name {
   font-size: 14.5px;
-  font-weight: 500;
+  font-weight: 650;
 }
 
 .gingr-page .mini-item .mi-desc {
@@ -723,11 +545,11 @@ body.gingr-page {
 }
 
 .gingr-page .opp-tag.other {
-  background: var(--bg-page);
+  background: var(--bg-band);
   color: var(--ink-faint);
 }
 
-/* ==================== Research ==================== */
+/* Research */
 .gingr-page .research-num {
   display: flex;
   flex-direction: column;
@@ -742,10 +564,9 @@ body.gingr-page {
 }
 
 .gingr-page .research-idx {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--coral);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-faint);
 }
 
 .gingr-page .research-item h4 {
@@ -796,8 +617,7 @@ body.gingr-page {
 }
 
 .gingr-page .quote-card blockquote {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--ink);
   font-style: italic;
@@ -824,7 +644,7 @@ body.gingr-page {
   grid-template-columns: 1fr 0.85fr;
   gap: 48px;
   align-items: center;
-  margin: 8px 0 8px;
+  margin: 44px 0 8px;
 }
 
 .gingr-page .dd {
@@ -870,62 +690,53 @@ body.gingr-page {
   margin-top: 9px;
 }
 
-/* ==================== Principles (card grid — merged pattern) ==================== */
-.gingr-page .principle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+/* Principles */
+.gingr-page .principle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
   margin-top: 8px;
 }
 
-.gingr-page .principle-card {
-  background: var(--bg-page);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  padding: 28px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.gingr-page .principle-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: transparent;
+.gingr-page .principle {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 20px;
 }
 
 .gingr-page .principle-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--coral-soft);
-  color: var(--coral);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-band);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
+  font-size: 17px;
+}
+
+.gingr-page .principle h4 {
   font-size: 16px;
-}
-
-.gingr-page .principle-card h4 {
-  font-size: 16.5px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-.gingr-page .principle-card p {
+.gingr-page .principle p {
   font-size: 14.5px;
   color: var(--ink-soft);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
-@media (max-width: 700px) {
-  .gingr-page .principle-grid {
+@media (max-width: 600px) {
+  .gingr-page .principle {
     grid-template-columns: 1fr;
   }
 }
 
 .gingr-page .why-approach {
-  margin-top: 44px;
+  margin-top: 40px;
   padding-top: 32px;
+  border-top: 1px solid var(--line);
 }
 
 .gingr-page .why-approach h4 {
@@ -943,7 +754,7 @@ body.gingr-page {
   line-height: 1.75;
 }
 
-/* ==================== Before / after ==================== */
+/* Before / after */
 .gingr-page .ba-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -956,9 +767,9 @@ body.gingr-page {
   position: relative;
   border-radius: var(--radius-m);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: none;
   background: #fff;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .gingr-page .screen-frame img {
@@ -1030,7 +841,6 @@ body.gingr-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fraunces', Georgia, serif;
   font-size: 12.5px;
   font-weight: 700;
   color: #fff;
@@ -1072,7 +882,7 @@ body.gingr-page {
   }
 }
 
-/* ==================== Tradeoffs ==================== */
+/* Tradeoffs */
 .gingr-page .tradeoff {
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
@@ -1089,14 +899,12 @@ body.gingr-page {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   margin-bottom: 14px;
 }
 
 .gingr-page .tradeoff-head .vs {
-  font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 800;
   color: #fff;
@@ -1125,7 +933,6 @@ body.gingr-page {
 .gingr-page .tradeoff-visual img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-s);
 }
 
 .gingr-page .tradeoff-why {
@@ -1169,7 +976,7 @@ body.gingr-page {
   }
 }
 
-/* ==================== AI build ==================== */
+/* AI build */
 .gingr-page .code-panel {
   background: var(--ink);
   color: #fff;
@@ -1265,7 +1072,7 @@ body.gingr-page {
   }
 }
 
-/* ==================== Learnings ==================== */
+/* Learnings */
 .gingr-page .learn-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1315,7 +1122,7 @@ body.gingr-page {
   }
 }
 
-/* ==================== Back to work ==================== */
+/* Back to work */
 .gingr-page .gingr-back {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -1344,8 +1151,7 @@ body.gingr-page {
 
 /* Other case-study pages render at body { transform: scale(0.75) }; gingr.html opts out of that
    hack and uses real 1:1 units, so the footer's shared site-wide CSS is re-scaled by hand here
-   to render at the same visual size as it does on the scaled pages. Kept identical to the
-   production gingr page so nav/footer stay unified across the site. */
+   to render at the same visual size as it does on the scaled pages. */
 .gingr-page .footer {
   padding: 30px 0;
 }

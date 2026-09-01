@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gingr - Vanny Yeh</title>
+  <title>Gingr (backup) - Vanny Yeh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400..700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/Vy.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="gingr.css">
+  <link rel="stylesheet" href="gingr-backup.css">
 </head>
 <body class="gingr-page" id="top">
   <div class="gingr-progress" id="progressBar"></div>
@@ -57,11 +57,9 @@
 
 <section id="overview">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Overview</span><span class="sec-index-num">[i]</span></div>
-    <div class="s-head">
-      <h2>Gingr: pet-care booking workflow redesign</h2>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Overview</span><span class="sec-index-num">[i]</span></div>
     <div class="overview-header">
+      <h2 class="sec-title">Gingr: Pet-Care Booking Workflow Redesign</h2>
       <p class="overview-para">Gingr is CRM software that runs daily operations for pet-care businesses: daycares, boarding facilities, and grooming salons. This project redesigned its highest-frequency used, highest-friction workflow: booking a reservation. By reorganizing customer and pet data around the task, breaking one long form into a guided flow, and rebuilding the result in real front-end code, the goal was a prototype staff could actually use, and something an engineer could actually build from.</p>
     </div>
     <div class="overview-grid">
@@ -74,7 +72,7 @@
         <div class="meta-item"><span class="meta-bullet"></span><div><div class="meta-label">Methods</div><div class="meta-value">AI-assisted research, Python scripting to collect and analyze review keywords from Reddit and other public platforms, competitive analysis, UX wireframing, rapid prototyping</div></div></div>
       </div>
       <div class="device-frame">
-        <img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned Gingr dashboard" style="margin-top: 70px;">
+        <img loading="lazy" src="assets/Gingr-Asset/booking-landing.png" alt="Redesigned Gingr dashboard">
       </div>
     </div>
 
@@ -105,10 +103,11 @@
 </section>
 <section id="problem" style="background:var(--bg-band);">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Why "booking"?</span><span class="sec-index-num">[ii]</span></div>
-    <div class="s-head">
-      <h2>Booking touches everything else</h2>
-      <p class="s-dek">CRM tools are the backbone of pet-care businesses: one system runs the whole day, from the front desk to the kennel. In a scan of public user feedback across the category, Gingr's CRM consistently surfaced as a major pain point.</p>
+    <div class="sec-index"><span class="sec-index-label">Problem / Background</span><span class="sec-index-num">[ii]</span></div>
+
+    <div class="subhead-block">
+      <h4>Context</h4>
+      <p class="prose">CRM tools are the backbone of pet-care businesses: one system runs the whole day, from the front desk to the kennel. In a scan of public user feedback across the category, Gingr's CRM consistently surfaced as a major pain point in public user feedback.</p>
     </div>
 
     <div class="subhead-block">
@@ -123,17 +122,6 @@
     </div>
 
     <div class="subhead-block">
-      <h4>Why booking?</h4>
-      <p class="prose" style="margin-bottom:4px;">Four candidate areas came out of research. Booking was the clear starting point: highest frequency, the widest reach across other modules, and a scope realistic for a 4-hour, AI-assisted build.</p>
-      <div class="opp-list">
-        <div class="opp-row"><span class="opp-name">Complex Booking</span><span class="opp-tag selected">Selected</span></div>
-        <div class="opp-row"><span class="opp-name">Calendar Clutter</span><span class="opp-tag other">Parked</span></div>
-        <div class="opp-row"><span class="opp-name">Media Management</span><span class="opp-tag other">Parked</span></div>
-        <div class="opp-row"><span class="opp-name">Onboarding</span><span class="opp-tag other">Parked</span></div>
-      </div>
-    </div>
-
-    <div class="subhead-block">
       <h4>Opportunity</h4>
       <p class="prose">Booking touches nearly every other module (customers, pets, staff, calendar, payments) and breaks down fastest under ordinary edge cases. That combination of high frequency, high friction, and a scope small enough to prototype well solo made it the right entry point, rather than trying to rework the whole CRM.</p>
     </div>
@@ -141,10 +129,7 @@
 </section>
 <section id="goals">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Scoping the redesign</span><span class="sec-index-num">[iii]</span></div>
-    <div class="s-head">
-      <h2>What this redesign had to solve</h2>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Goals / Scope Criteria</span><span class="sec-index-num">[iii]</span></div>
 
     <div class="subhead-block">
       <h4>Primary goals</h4>
@@ -155,18 +140,27 @@
         <div class="mini-item"><div class="mi-name">Support real-world complexity</div><div class="mi-desc">Handle multi-pet and multi-groomer bookings without manual workarounds.</div></div>
       </div>
     </div>
+
+    <div class="subhead-block">
+      <h4>Why booking ?</h4>
+      <p class="prose" style="margin-bottom:4px;">Four candidate areas came out of research. Booking was the clear starting point: highest frequency, the widest reach across other modules, and a scope realistic for a 4-hour, AI-assisted build.</p>
+      <div class="opp-list">
+        <div class="opp-row"><span class="opp-name">Complex Booking</span><span class="opp-tag selected">Selected</span></div>
+        <div class="opp-row"><span class="opp-name">Calendar Clutter</span><span class="opp-tag other">Parked</span></div>
+        <div class="opp-row"><span class="opp-name">Media Management</span><span class="opp-tag other">Parked</span></div>
+        <div class="opp-row"><span class="opp-name">Onboarding</span><span class="opp-tag other">Parked</span></div>
+      </div>
+    </div>
   </div>
 </section>
 <section id="research" style="background:var(--bg-band);">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>How AI changed the research process</span><span class="sec-index-num">[iv]</span></div>
-    <div class="s-head">
-      <h2>Building evidence from public signals</h2>
-      <p class="s-dek">With no access to Gingr's internal users, data, or support tickets, this research had to be built entirely from public signals. AI tooling didn't replace my thinking — it changed where I spend my time.</p>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Research &amp; Discovery</span><span class="sec-index-num">[iv]</span></div>
 
     <div class="dd-row">
       <div>
+        <h4 style="font-size:16.5px; font-weight:700; margin-bottom:14px;">How AI changed my research process</h4>
+        <p class="prose" style="margin-bottom:20px;">With no access to Gingr's internal users, data, or support tickets, this research had to be built entirely from public signals. AI tooling didn't replace my thinking. It changes where I spend my time.</p>
         <ul class="process-list">
           <li><span class="dot"></span>The designer's role shifts from screen-maker to decision navigator.</li>
           <li><span class="dot"></span>The Double Diamond still matters, but execution inside each phase just moves faster.</li>
@@ -227,31 +221,24 @@
 </section>
 <section id="principles">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Design principles</span><span class="sec-index-num">[v]</span></div>
-    <div class="s-head">
-      <h2>Four rules that shaped every screen</h2>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Decision Making &amp; Design Principles</span><span class="sec-index-num">[v]</span></div>
 
-    <div class="principle-grid">
-      <div class="principle-card">
+    <div class="principle-row">
+      <div class="principle">
         <div class="principle-icon">⊕</div>
-        <h4>Bring CRM data into the workflow</h4>
-        <p>Surface critical CRM data at the exact point of decision, not off in a separate tab. Directly addresses fragmented information: staff no longer have to leave the flow to find what they already know.</p>
+        <div><h4>Bring CRM data into the workflow</h4><p>Surface critical CRM data at the exact point of decision, not off in a separate tab. Directly addresses fragmented information: staff no longer have to leave the flow to find what they already know.</p></div>
       </div>
-      <div class="principle-card">
+      <div class="principle">
         <div class="principle-icon">→</div>
-        <h4>Allow progressive completion</h4>
-        <p>Let staff move forward with partial information instead of forcing full completion upfront. Reveal the next step only once it's relevant.</p>
+        <div><h4>Allow progressive completion</h4><p>Let staff move forward with partial information instead of forcing full completion upfront. Reveal the next step only once it's relevant.</p></div>
       </div>
-      <div class="principle-card">
+      <div class="principle">
         <div class="principle-icon">⚑</div>
-        <h4>Surface constraints earlier</h4>
-        <p>Set constraints, like conflicts or availability, before the user commits to a path, not after. Directly reduces the rework caused by hidden dependencies.</p>
+        <div><h4>Surface constraints earlier</h4><p>Set constraints, like conflicts or availability, before the user commits to a path, not after. Directly reduces the rework caused by hidden dependencies.</p></div>
       </div>
-      <div class="principle-card">
+      <div class="principle">
         <div class="principle-icon">⊞</div>
-        <h4>Support multi-entity scenarios</h4>
-        <p>Hold complexity like three dogs, one groomer, two services without breaking task continuity. Directly addresses edge cases like multi-pet or multi-groomer bookings.</p>
+        <div><h4>Support multi-entity scenarios</h4><p>Hold complexity like three dogs, one groomer, two services without breaking task continuity. Directly addresses edge cases like multi-pet or multi-groomer bookings.</p></div>
       </div>
     </div>
 
@@ -263,34 +250,13 @@
 </section>
 <section id="interaction" style="background:var(--bg-band);">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>From screens to shipped decisions</span><span class="sec-index-num">[vi]</span></div>
-    <div class="s-head">
-      <h2>Two moments, redesigned end to end</h2>
-      <p class="s-dek">The dashboard staff land on every day, and the booking flow itself, all the way from the entry point to a confirmed reservation.</p>
-    </div>
-
-    <div class="demo-card" id="protoCard" style="margin-bottom:56px;">
-      <video class="demo-video" id="protoVideo" preload="metadata" playsinline muted loop>
-        <source src="assets/Gingr-Asset/Prototype recording.mp4" type="video/mp4">
-        <source src="assets/Gingr-Asset/Prototype recording.mov" type="video/quicktime">
-        Your browser doesn't support embedded video. <a href="assets/Gingr-Asset/Prototype recording.mp4">Download the recording</a> instead.
-      </video>
-      <button class="demo-play" id="protoPlay" type="button" aria-label="Play the prototype walkthrough">
-        <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M8 5.5v17l15-8.5-15-8.5z" fill="#15171B"/></svg>
-      </button>
-      <div class="demo-info">
-        <h4>Watch the prototype in action</h4>
-        <p>A walkthrough of the coded build running in the browser, not a click-through mockup.</p>
-      </div>
-      <span class="demo-duration" id="protoDuration"></span>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Design Solutions</span><span class="sec-index-num">[vi]</span></div>
+    <p class="prose" style="margin-bottom:60px;">Two moments in the flow show the shift most clearly: the dashboard staff land on every day, the entry point into a new booking, and the screen where a booking actually gets confirmed.</p>
 
     <!-- Dashboard -->
     <div class="subhead-block" style="margin-bottom:70px;">
-      <div class="m-head">
-        <h3>Entry Dashboard: From a status report to a control center</h3>
-        <p class="s-dek">The old dashboard was a dense operations log. It was accurate, but it didn't tell staff what to do next. The redesign leads with today's actions, not yesterday's data.</p>
-      </div>
+      <h4 style="font-size:19px; margin-bottom:6px;">Dashboard: from a status report to a control center</h4>
+      <p class="prose" style="margin-bottom:28px;">The old dashboard was a dense operations log. It wasaccurate, but it didn't tell staff what to do next. The redesign leads with today's actions, not yesterday's data.</p>
       <div class="screen-frame" style="margin-bottom:36px;"><img loading="lazy" src="assets/Gingr-Asset/dashboard.png" alt="Gingr dashboard before and after redesign"></div>
       <div class="annot-list annot-list-grid">
         <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Clear workflow entry</h5><p>One-tap actions for the day's most common tasks. Reducing cognitive load and making actions more direct.</p></div></div>
@@ -301,27 +267,22 @@
 
     <!-- Booking flow -->
     <div class="subhead-block">
-      <div class="m-head">
-        <h3>Booking: One long form becomes a guided flow</h3>
-        <p class="s-dek">The old reservation form asked for location, type, pet, and dates all at once, with no sense of progress. The redesign breaks it into three legible steps: Customer, Booking Type, Services.</p>
-      </div>
+      <h4 style="font-size:19px; margin-bottom:6px;">Booking: from a long form to a guided, confirmed reservation</h4>
+      <p class="prose" style="margin-bottom:28px;">The old reservation form asked for location, type, pet, and dates all at once, with no sense of progress. The redesign breaks it into three legible stepsCustomer, Booking Type, Services.</p>
       <div class="screen-frame" style="margin-bottom:36px;"><img loading="lazy" src="assets/Gingr-Asset/booking.png" alt="Gingr booking flow before and after redesign"></div>
       <div class="annot-list annot-list-grid">
         <div class="annot-item"><div class="annot-num" style="background:var(--coral);">1</div><div><h5>Guided 3-step flow</h5><p>Customer → Booking Type → Services replaces one long form, so progress and the next step are always clear.</p></div></div>
         <div class="annot-item"><div class="annot-num" style="background:var(--gold);">2</div><div><h5>Customer-first, multi-pet model</h5><p>Reflects real behavior, where one owner can manage multiple pets and bundle several services into a single booking.</p></div></div>
         <div class="annot-item"><div class="annot-num" style="background:var(--slate);">3</div><div><h5>CRM context, surfaced automatically</h5><p>Pet history, vaccination status, and preferred groomer appear right where the decision is made, no need to look them up.</p></div></div>
-        <div class="annot-item"><div class="annot-num" style="background:#8A93A1;">4</div><div><h5>Dependencies and cost made visible</h5><p>The persistent summary panel shows what's required next and keeps a running total, so nothing has to be tracked mentally. Providing continuous feedback and reducing the need for mental tracking.</p></div></div>
+        <div class="annot-item"><div class="annot-num" style="background:#8A93A1;">4</div><div><h5>Dependencies and cost made visible</h5><p>The persistent summary panel shows what's required next and keeps a running total, so nothing has to be tracked mentally. <br>Providing continuous feedback and reducing the need for mental tracking.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 <section id="tradeoffs">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>No design decision is free</span><span class="sec-index-num">[vii]</span></div>
-    <div class="s-head">
-      <h2>Two tradeoffs, made honestly</h2>
-      <p class="s-dek">Two calls in this redesign came with a real cost on the other side. Naming them honestly is part of the design work.</p>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">Key Tradeoffs</span><span class="sec-index-num">[vii]</span></div>
+    <p class="sec-dek" style="margin-bottom:8px;">Two calls in this redesign came with a real cost on the other side. Naming them honestly is part of the design work.</p>
 
     <div class="tradeoff">
       <div class="tradeoff-head"><span class="side-a">Customer-first</span><span class="vs">VS</span><span class="side-b">Service-first</span></div>
@@ -347,20 +308,18 @@
 
 <section id="build" style="background:var(--bg-band);">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Beyond Figma</span><span class="sec-index-num">[viii]</span></div>
-    <div class="s-head">
-      <h2>Designed in Figma. Rebuilt in code.</h2>
-      <p class="s-dek">The differentiator of this project isn't just the design. It's that the design didn't stop at Figma.</p>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">AI-Assisted Build</span><span class="sec-index-num">[viii]</span></div>
+    <p class="sec-dek" style="margin-bottom:32px;">The differentiator of this project isn't just the design. It's that the design didn't stop at Figma.</p>
 
     <div class="code-panel">
       <div>
-        <h4>Rebuilt in code with Cursor</h4>
+        <h4>Designed in Figma. Rebuilt in code with Cursor.</h4>
         <p>Every screen in this case study, old-state references aside, was taken from a Figma frame to real, running HTML/CSS/JS using Cursor, then iterated directly against the four design principles above. That's the difference between a designer who hands off a click-through mockup and one who hands off something that opens in a browser, with real markup an engineer can read, adjust, and build from directly.</p>
         <p style="margin-top:14px;">To be direct about scope: this was a solo project without an engineering team to actually receive the handoff, so "reads like a real build" is a claim about how it's constructed, not a tested claim about handoff smoothness in practice. A recorded walkthrough of the live prototype could be added next.</p>
         <div class="code-links">
           <a class="pill-link" href="https://github.com/vannyyeh/vannyyeh.github.io/blob/main/assets/Gingr-Asset/prototype.html" target="_blank" rel="noopener">View repo</a>
           <a class="pill-link" href="https://gingr-booking.netlify.app/" target="_blank" rel="noopener">View live prototype</a>
+          
         </div>
       </div>
       <div class="code-visual">
@@ -380,10 +339,7 @@
 </section>
 <section id="learnings">
   <div class="wrap">
-    <div class="sec-index"><span class="eyebrow"><span class="eyebrow-dot"></span>Reflection</span><span class="sec-index-num">[ix]</span></div>
-    <div class="s-head">
-      <h2>What I'd do with more time</h2>
-    </div>
+    <div class="sec-index"><span class="sec-index-label">What I Learned / Next Steps</span><span class="sec-index-num">[ix]</span></div>
     <div class="learn-grid">
       <div class="learn-col">
         <h4>Key Learnings</h4>
@@ -446,58 +402,6 @@
       document.addEventListener("scroll", updateProgress, { passive: true });
       window.addEventListener("resize", updateProgress);
       updateProgress();
-    })();
-
-    (function () {
-      const card = document.getElementById("protoCard");
-      const video = document.getElementById("protoVideo");
-      const playBtn = document.getElementById("protoPlay");
-      const durationEl = document.getElementById("protoDuration");
-      if (!card || !video || !playBtn) return;
-
-      let engaged = false; // becomes true once the viewer clicks to take manual control
-
-      function formatTime(sec) {
-        if (!isFinite(sec)) return "";
-        const m = Math.floor(sec / 60);
-        const s = Math.round(sec % 60).toString().padStart(2, "0");
-        return m + ":" + s;
-      }
-
-      video.addEventListener("loadedmetadata", function () {
-        if (durationEl) durationEl.textContent = formatTime(video.duration);
-      });
-
-      playBtn.addEventListener("click", function () {
-        engaged = true;
-        video.controls = true;
-        card.classList.remove("is-ambient");
-        card.classList.add("is-playing");
-        video.play();
-      });
-
-      video.addEventListener("pause", function () {
-        if (engaged) card.classList.remove("is-playing");
-      });
-
-      // Silent looping preview while the card is on screen — pauses once it scrolls
-      // out of view, and stops managing playback entirely once the viewer clicks play.
-      if ("IntersectionObserver" in window) {
-        const io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (engaged) return;
-            if (entry.isIntersecting) {
-              card.classList.add("is-ambient");
-              video.play().catch(function () {});
-            } else {
-              card.classList.remove("is-ambient");
-              video.pause();
-            }
-          });
-        }, { threshold: 0.4 });
-
-        io.observe(card);
-      }
     })();
   </script>
 </body>
