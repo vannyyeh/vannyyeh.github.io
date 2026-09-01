@@ -16,6 +16,8 @@
   </script>
 </head>
 <body class="valehealth-page">
+    <div class="vh-progress" id="progressBar"></div>
+
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -1069,5 +1071,30 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+      (function () {
+        const progressBar = document.getElementById("progressBar");
+        const header = document.querySelector(".header");
+
+        // body carries a site-wide `transform: scale()` (see styles.css), which makes any
+        // position:fixed descendant fixed relative to body instead of the viewport. Move the
+        // bar and the nav header out to <html> so they stay truly pinned while scrolling.
+        // (valehealth.css replicates body's own scale recipe on the relocated header so its
+        // on-screen size doesn't change.)
+        if (progressBar) document.documentElement.insertBefore(progressBar, document.body);
+        if (header) document.documentElement.appendChild(header);
+
+        function updateProgress() {
+          const h = document.documentElement;
+          const scrollable = h.scrollHeight - h.clientHeight;
+          const scrolled = scrollable > 0 ? (h.scrollTop / scrollable) * 100 : 0;
+          if (progressBar) progressBar.style.width = scrolled + "%";
+        }
+
+        document.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        updateProgress();
+      })();
+    </script>
 </body>
 </html>

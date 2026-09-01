@@ -1,33 +1,65 @@
 /* Valehealth case study page — layout and styling for content from index.html */
 
-/* Page-scoped: dark hero + light nav (Valehealth page only) */
-.valehealth-page .header {
+.vh-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #5cb5a3;
+  width: 0%;
+  z-index: 1101;
+  transition: width 0.1s linear;
+}
+
+/* Page-scoped: dark hero + light nav (Valehealth page only)
+   The `body.valehealth-page ~ .header` variants match once the page's inline script
+   relocates .header to be a sibling of <body> (see bottom of valehealth.html) so it can
+   stay truly fixed to the viewport instead of the site-wide scaled `body`. */
+.valehealth-page .header,
+body.valehealth-page ~ .header {
   background: #2f2f2f;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.valehealth-page .header.scrolled {
+.valehealth-page .header.scrolled,
+body.valehealth-page ~ .header.scrolled {
   background: #2f2f2f;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 
-.valehealth-page .nav-link {
+.valehealth-page .nav-link,
+body.valehealth-page ~ .header .nav-link {
   color: rgba(255, 255, 255, 0.92);
 }
 
-.valehealth-page .nav-link:hover {
+.valehealth-page .nav-link:hover,
+body.valehealth-page ~ .header .nav-link:hover {
   opacity: 0.75;
 }
 
-.valehealth-page .nav-arrow path {
+.valehealth-page .nav-arrow path,
+body.valehealth-page ~ .header .nav-arrow path {
   stroke: currentColor;
 }
 
-.valehealth-page .logo-img {
+.valehealth-page .logo-img,
+body.valehealth-page ~ .header .logo-img {
   filter: invert(1);
+}
+
+/* Once relocated outside of body, .header loses body's site-wide `scale(0.75)` sizing
+   trick. Replicate that same recipe directly on the header so its on-screen size is
+   unchanged, while now being fixed relative to the real viewport instead of body. */
+body.valehealth-page ~ .header {
+  left: 50%;
+  right: auto;
+  width: 133.33%;
+  margin-left: -66.665%;
+  transform: translateY(0) scale(0.75);
+  transform-origin: top center;
 }
 
 .redesign-portfolio-landing-page {
