@@ -4,6 +4,31 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 1x layout that matches the *visual* width of scaled pages
+   (those pages use max-width 1440px at scale 0.75 → 1080px on screen). */
+html:has(body.gingr-page) {
+  --g-maxw: 1080px;
+  --g-gutter: 15px; /* 20px × 0.75 */
+}
+
+@media (max-width: 1440px) {
+  html:has(body.gingr-page) {
+    --g-gutter: 60px; /* 80px × 0.75 */
+  }
+}
+
+@media (max-width: 900px) {
+  html:has(body.gingr-page) {
+    --g-gutter: 30px; /* 40px × 0.75 */
+  }
+}
+
+@media (max-width: 600px) {
+  html:has(body.gingr-page) {
+    --g-gutter: 18px; /* 24px × 0.75 */
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -24,7 +49,7 @@ body.gingr-page {
   --radius-s: 8px;
   --radius-m: 14px;
   --radius-l: 24px;
-  --maxw: 1120px;
+  --maxw: var(--g-maxw, 1080px);
   --shadow-sm: 0 1px 2px rgba(21, 23, 27, 0.06);
   --shadow-md: 0 16px 40px -18px rgba(21, 23, 27, 0.22);
 
@@ -46,37 +71,66 @@ body.gingr-page {
   color: #fff;
 }
 
-/* Match the visual header size of scaled pages */
-.gingr-page .header-content {
+.gingr-page .header,
+.gingr-page .header.scrolled,
+body.gingr-page ~ .header,
+body.gingr-page ~ .header.scrolled {
+  background: rgba(245, 246, 248, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Header is moved to a sibling of <body> (see gingr.html) so position:fixed
+   pins to the viewport while scrolling, same as ValeHealth. */
+body.gingr-page ~ .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  transform: none;
+  margin: 0;
+}
+
+.gingr-page .header.scrolled,
+body.gingr-page ~ .header.scrolled {
+  background: rgba(245, 246, 248, 0.96);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1.39px solid rgba(0, 0, 0, 0.06);
+}
+
+.gingr-page .header-content,
+body.gingr-page ~ .header .header-content {
   height: 62px;
 }
 
-.gingr-page .header,
-.gingr-page .header.scrolled {
-  background: var(--bg-band);
+.gingr-page .header .container,
+body.gingr-page ~ .header .container {
+  max-width: var(--g-maxw, 1080px);
+  padding: 0 var(--g-gutter, 60px);
 }
 
-.gingr-page .header .container {
-  max-width: var(--maxw);
-  padding: 0 40px;
-}
-
-.gingr-page .logo-img {
+.gingr-page .logo-img,
+body.gingr-page ~ .header .logo-img {
   width: 29px;
   height: 24px;
 }
 
-.gingr-page .nav {
+.gingr-page .nav,
+body.gingr-page ~ .header .nav {
   gap: 32px;
 }
 
-.gingr-page .nav-link {
+.gingr-page .nav-link,
+body.gingr-page ~ .header .nav-link {
   font-size: 16.5px;
   line-height: 24px;
   letter-spacing: -0.3px;
 }
 
-.gingr-page .nav-arrow {
+.gingr-page .nav-arrow,
+body.gingr-page ~ .header .nav-arrow {
   width: 13px;
   height: 13px;
 }
@@ -121,24 +175,19 @@ body.gingr-page {
 .gingr-page .wrap {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--g-gutter, 60px);
 }
 
-@media (max-width: 760px) {
-  .gingr-page .wrap {
-    padding: 0 22px;
-  }
-}
-
-/* Scroll progress */
+/* Scroll progress — pinned to the viewport (moved next to <body> in gingr.html) */
 .gingr-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 3px;
-  background: var(--coral);
+  background: #E8533E;
   width: 0%;
   z-index: 1101;
+  pointer-events: none;
   transition: width 0.1s linear;
 }
 
@@ -239,7 +288,6 @@ body.gingr-page {
 
 .gingr-page .hero-grid .device-frame img {
   border-radius: var(--radius-l);
-  box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 860px) {
@@ -1319,7 +1367,7 @@ body.gingr-page {
 .gingr-page .gingr-back {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 8px 40px 64px;
+  padding: 8px var(--g-gutter, 60px) 64px;
 }
 
 .gingr-page .gingr-back-link {
@@ -1336,37 +1384,9 @@ body.gingr-page {
   color: var(--coral);
 }
 
-@media (max-width: 760px) {
-  .gingr-page .gingr-back {
-    padding: 8px 22px 48px;
-  }
-}
-
-/* Other case-study pages render at body { transform: scale(0.75) }; gingr.html opts out of that
-   hack and uses real 1:1 units, so the footer's shared site-wide CSS is re-scaled by hand here
-   to render at the same visual size as it does on the scaled pages. Kept identical to the
-   production gingr page so nav/footer stay unified across the site. */
-.gingr-page .footer {
-  padding: 30px 0;
-}
-
 .gingr-page .footer .container {
-  max-width: 1080px;
-  padding: 0px;
-}
-
-.gingr-page .footer-social {
-  gap: 15px;
-}
-
-.gingr-page .social-icon {
-  width: 18.75px;
-  height: 18.75px;
-}
-
-.gingr-page .footer-copyright {
-  font-size: 15px;
-  line-height: 18px;
+  max-width: var(--g-maxw, 1080px);
+  padding: 0 var(--g-gutter, 60px);
 }
 
 /* Floating back to top */
@@ -1409,8 +1429,3 @@ body.gingr-page {
   }
 }
 
-@media (max-width: 768px) {
-  body.gingr-page {
-    padding-top: 62px;
-  }
-}

@@ -429,13 +429,20 @@
     (function () {
       const progressBar = document.getElementById("progressBar");
       const backTop = document.getElementById("backTop");
+      const header = document.querySelector(".header");
+
+      // Pin the progress bar and nav to the viewport while scrolling,
+      // same approach as ValeHealth. Progress bar goes last so it sits on top of the nav.
+      if (header) document.documentElement.appendChild(header);
+      if (progressBar) document.documentElement.appendChild(progressBar);
 
       function updateProgress() {
-        const h = document.documentElement;
-        const scrollable = h.scrollHeight - h.clientHeight;
-        const scrolled = scrollable > 0 ? (h.scrollTop / scrollable) * 100 : 0;
+        const doc = document.documentElement;
+        const scrollTop = window.pageYOffset || doc.scrollTop || document.body.scrollTop || 0;
+        const scrollable = Math.max(doc.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+        const scrolled = scrollable > 0 ? (scrollTop / scrollable) * 100 : 0;
         if (progressBar) progressBar.style.width = scrolled + "%";
-        if (backTop) backTop.classList.toggle("is-visible", h.scrollTop > 480);
+        if (backTop) backTop.classList.toggle("is-visible", scrollTop > 480);
       }
 
       document.addEventListener("scroll", updateProgress, { passive: true });

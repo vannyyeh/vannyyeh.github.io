@@ -1,5 +1,28 @@
 /* Valehealth case study page — layout and styling for content from index.html */
 
+html:has(body.valehealth-page) {
+  --vh-maxw: 1440px;
+  --vh-gutter: 20px;
+}
+
+@media (max-width: 1440px) {
+  html:has(body.valehealth-page) {
+    --vh-gutter: 80px;
+  }
+}
+
+@media (max-width: 900px) {
+  html:has(body.valehealth-page) {
+    --vh-gutter: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  html:has(body.valehealth-page) {
+    --vh-gutter: 24px;
+  }
+}
+
 .vh-progress {
   position: fixed;
   top: 0;
@@ -108,10 +131,17 @@ body.valehealth-page ~ .header {
   content: none;
 }
 
-.valehealth-page .redesign-portfolio-landing-page .vh-hero-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 80px;
+.valehealth-page .redesign-portfolio-landing-page .vh-hero-container,
+.redesign-portfolio-landing-page .app,
+.redesign-portfolio-landing-page .back-projects-wrap,
+.valehealth-page .footer .container,
+.valehealth-page .header .container,
+body.valehealth-page ~ .header .container {
+  max-width: var(--vh-maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--vh-gutter);
+  padding-right: var(--vh-gutter);
 }
 
 .valehealth-page .redesign-portfolio-landing-page .vh-hero-grid {
@@ -219,9 +249,9 @@ body.valehealth-page ~ .header {
   right: 0;
   bottom: 22px;
   z-index: 1;
-  max-width: 1440px;
+  max-width: var(--vh-maxw);
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 var(--vh-gutter);
   text-align: left;
   background: transparent;
 }
@@ -246,16 +276,8 @@ body.valehealth-page ~ .header {
 }
 
 @media (max-width: 900px) {
-  .redesign-portfolio-landing-page .valehealth-hero .container71 {
-    padding: 0 40px;
-  }
-
   .redesign-portfolio-landing-page .back-projects-wrap {
-    padding: 0 40px 40px;
-  }
-
-  .valehealth-page .redesign-portfolio-landing-page .vh-hero-container {
-    padding: 0 40px;
+    padding-bottom: 40px;
   }
 }
 
@@ -264,16 +286,11 @@ body.valehealth-page ~ .header {
     max-height: 420px;
   }
   .redesign-portfolio-landing-page .valehealth-hero .container71 {
-    padding: 0 24px;
     bottom: 18px;
   }
 
   .redesign-portfolio-landing-page .back-projects-wrap {
-    padding: 0 24px 40px;
-  }
-
-  .valehealth-page .redesign-portfolio-landing-page .vh-hero-container {
-    padding: 0 24px;
+    padding-bottom: 40px;
   }
 
   .valehealth-page .redesign-portfolio-landing-page .vh-hero-grid {
@@ -306,9 +323,8 @@ body.valehealth-page ~ .header {
 }
 
 .redesign-portfolio-landing-page .app {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 80px 60px;
+  padding-top: 0;
+  padding-bottom: 60px;
 }
 
 /* Section header row (e.g. Overview + [i]) */
@@ -539,9 +555,8 @@ body.valehealth-page ~ .header {
 
 /* Bottom-left back link */
 .redesign-portfolio-landing-page .back-projects-wrap {
-  max-width: 1440px;
-  margin: 24px auto 0;
-  padding: 0 80px 5px;
+  margin-top: 24px;
+  padding-bottom: 5px;
 }
 
 .redesign-portfolio-landing-page .back-to-projects {
@@ -1318,14 +1333,6 @@ body.valehealth-page ~ .header {
   font-weight: 600;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .redesign-portfolio-landing-page .app {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-
 @media (max-width: 600px) {
   .redesign-portfolio-landing-page .container33 .frame-5,
   .redesign-portfolio-landing-page .container33 .frame-63 {
@@ -1340,11 +1347,6 @@ body.valehealth-page ~ .header {
   .redesign-portfolio-landing-page .stage1-left,
   .redesign-portfolio-landing-page .stage1-right {
     flex: 1;
-  }
-
-  .redesign-portfolio-landing-page .app {
-    padding-left: 24px;
-    padding-right: 24px;
   }
 
   .redesign-portfolio-landing-page .valehealth-ai-sleep-support-chatbot {
