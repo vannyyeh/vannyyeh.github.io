@@ -117,19 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const messages = [
             {
                 role: "designer",
-                rest: ", shaping ideas into user centered experiences."
+                rest: " who thinks beyond pixels."
             },
             {
-                role: "developer",
-                rest: ", turning design intent into scalable systems."
+                role: "builder",
+                rest: " who goes beyond prompts."
             },
             {
-                role: "designer",
-                rest: ", imagining how products should feel."
-            },
-            {
-                role: "developer",
-                rest: ", building the structure that makes them work."
+                role: "product thinker",
+                rest: " who takes ideas to launch."
             }
         ];
         

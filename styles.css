@@ -154,13 +154,13 @@ body {
 }
 
 .hero-content {
-    max-width: 1150px;
+    max-width: 1250px;
 }
 
 .hero-intro {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 42px;
     line-height: 48px;
     color: rgba(10, 10, 10, 0.9);
     margin-bottom: 10px;
@@ -185,7 +185,8 @@ body {
     position: relative;
     overflow: hidden;
     min-width: 210px;
-    min-height: 45px;;
+    min-height: 45px;
+    margin-right: 8px;
     text-align: center;
     line-height: 1;
 }
@@ -227,25 +228,31 @@ body {
 .hero-description {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 28px;
+    font-size: 32px;
     line-height: 38px;
     color: rgba(10, 10, 10, 0.9);
     margin-bottom: 30px;
     letter-spacing: -0.4344px;
 }
 
+.hero-affiliations {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
 .hero-companies {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-top: 0;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 28px;
-    line-height: 36.139px;
-    color: rgba(10, 10, 10, 0.9);
+    line-height: 45px;
+    color: rgba(68, 66, 66, 0.9);
     letter-spacing: -0.4344px;
 }
 
@@ -256,7 +263,13 @@ body {
     line-height: 30px;
 }
 
-.company-logo.designity {
+.company-logo-end {
+    display: inline-flex;
+    align-items: center;
+}
+
+.company-logo.designity,
+.company-logo.patientpal {
     width: auto;
     height: 30px;
     object-fit: contain;
@@ -264,8 +277,17 @@ body {
 
 .company-logo.disney {
     width: auto;
-    height: 30px;
+    height: 40px;
     object-fit: contain;
+}
+
+.company-logo.utaustin,
+.company-logo.purdue {
+    width: auto;
+    height: 28px;
+    object-fit: contain;
+    filter: contrast(0.80);
+    opacity: 0.68;
 }
 
 /* Contact and Skills Section */
